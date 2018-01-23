@@ -106,6 +106,7 @@
 	O:  此时本机可以连接到mysql 但是外网还是连接不到
 		简单点
 		update user set host='%' where user='root';
+		flush privileges;
 		尝试外网连接
 		注意需要关闭
 		iptables -F
