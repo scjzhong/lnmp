@@ -250,6 +250,7 @@
 		kill -USR2 `cat /usr/local/php/var/run/php-fpm.pid` 		#php-fpm平滑重启
 
 		 
+		 如若出现502  注意先将user group 改为默认
 	
 	
 	
