@@ -290,5 +290,111 @@
 	显示： nginx: configuration file /usr/local/nginx/conf/nginx.conf test is successful
 	
 	
+
+
+5：elasticsearch安装
+		wget https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-6.1.2.tar.gz
+		mv elasticsearch-6.1.2.tar.gz /usr/local/
+		tar -zxvf elasticsearch-6.1.2.tar.gz
+		cd elasticsearch-6.1.2
+		cd bin
+		执行启动可能会报错
+		./elasticsearch
+		报错如下
+		
+		[2018-01-24T21:07:17,532][WARN ][o.e.b.ElasticsearchUncaughtExceptionHandler] [] uncaught exception in thread [main]
+		org.elasticsearch.bootstrap.StartupException: java.lang.RuntimeException: can not run elasticsearch as root
+			at org.elasticsearch.bootstrap.Elasticsearch.init(Elasticsearch.java:125) ~[elasticsearch-6.1.2.jar:6.1.2]
+			at org.elasticsearch.bootstrap.Elasticsearch.execute(Elasticsearch.java:112) ~[elasticsearch-6.1.2.jar:6.1.2]
+			at org.elasticsearch.cli.EnvironmentAwareCommand.execute(EnvironmentAwareCommand.java:86) ~[elasticsearch-6.1.2.jar:6.1.2]
+			at org.elasticsearch.cli.Command.mainWithoutErrorHandling(Command.java:124) ~[elasticsearch-cli-6.1.2.jar:6.1.2]
+			at org.elasticsearch.cli.Command.main(Command.java:90) ~[elasticsearch-cli-6.1.2.jar:6.1.2]
+			at org.elasticsearch.bootstrap.Elasticsearch.main(Elasticsearch.java:92) ~[elasticsearch-6.1.2.jar:6.1.2]
+			at org.elasticsearch.bootstrap.Elasticsearch.main(Elasticsearch.java:85) ~[elasticsearch-6.1.2.jar:6.1.2]
+		Caused by: java.lang.RuntimeException: can not run elasticsearch as root
+			at org.elasticsearch.bootstrap.Bootstrap.initializeNatives(Bootstrap.java:104) ~[elasticsearch-6.1.2.jar:6.1.2]
+			at org.elasticsearch.bootstrap.Bootstrap.setup(Bootstrap.java:171) ~[elasticsearch-6.1.2.jar:6.1.2]
+			at org.elasticsearch.bootstrap.Bootstrap.init(Bootstrap.java:322) ~[elasticsearch-6.1.2.jar:6.1.2]
+			at org.elasticsearch.bootstrap.Elasticsearch.init(Elasticsearch.java:121) ~[elasticsearch-6.1.2.jar:6.1.2]
+			... 6 more
+			
+			
+		注意这个报错  org.elasticsearch.bootstrap.StartupException: java.lang.RuntimeException: can not run elasticsearch as root
+		elasticsearch 不能以root 用户运行。也是为了安全考虑
+		
+		因为安全问题elasticsearch 不让用root用户直接运行，所以要创建新用户
 	
+		建议创建一个单独的用户用来运行ElasticSearch
+		
+		
+	A:	创建elsearch用户组及elsearch用户
+		groupadd elsearch
+		useradd elsearch -g elsearch -p elasticsearch
 	
+	B:	更改elasticsearch文件夹及内部文件的所属用户及组为elsearch:elsearch
+		cd /usr/local
+		chown -R elsearch:elsearch  elasticsearch-6.1.2
+		
+	C:	切换到elsearch用户再启动
+		su elsearch
+		cd /elasticsearch-6.1.2/bin
+		启动
+		./elasticsearch
+		
+		
+		[2018-01-24T21:28:55,847][INFO ][o.e.n.Node               ] [lHDvvtq] starting ...
+		[2018-01-24T21:28:56,311][INFO ][o.e.t.TransportService   ] [lHDvvtq] publish_address {127.0.0.1:9300}, bound_addresses {[::1]:9300}, {127.0.0.1:9300}
+		[2018-01-24T21:28:56,496][WARN ][o.e.b.BootstrapChecks    ] [lHDvvtq] max file descriptors [4096] for elasticsearch process is too low, increase to at least [65536]
+		[2018-01-24T21:28:56,496][WARN ][o.e.b.BootstrapChecks    ] [lHDvvtq] max virtual memory areas vm.max_map_count [65530] is too low, increase to at least [262144]
+		[2018-01-24T21:28:59,805][INFO ][o.e.c.s.MasterService    ] [lHDvvtq] zen-disco-elected-as-master ([0] nodes joined), reason: new_master {lHDvvtq}{lHDvvtqFQsGeSSWPxooS5w}{McqGNmL8RRGuw5xLqlIDxg}{127.0.0.1}{127.0.0.1:9300}
+		[2018-01-24T21:28:59,813][INFO ][o.e.c.s.ClusterApplierService] [lHDvvtq] new_master {lHDvvtq}{lHDvvtqFQsGeSSWPxooS5w}{McqGNmL8RRGuw5xLqlIDxg}{127.0.0.1}{127.0.0.1:9300}, reason: apply cluster state (from master [master {lHDvvtq}{lHDvvtqFQsGeSSWPxooS5w}{McqGNmL8RRGuw5xLqlIDxg}{127.0.0.1}{127.0.0.1:9300} committed version [1] source [zen-disco-elected-as-master ([0] nodes joined)]])
+		[2018-01-24T21:28:59,891][INFO ][o.e.g.GatewayService     ] [lHDvvtq] recovered [0] indices into cluster_state
+		[2018-01-24T21:28:59,922][INFO ][o.e.h.n.Netty4HttpServerTransport] [lHDvvtq] publish_address {127.0.0.1:9200}, bound_addresses {[::1]:9200}, {127.0.0.1:9200}
+		[2018-01-24T21:28:59,922][INFO ][o.e.n.Node               ] [lHDvvtq] started
+		
+		当出现   starting ...   started 即启动成功
+		
+		
+		再次启动可能会遇到的错误
+		ERROR: [2] bootstrap checks failed
+		[1]: max file descriptors [4096] for elasticsearch process is too low, increase to at least [65536]	
+		[2]: max virtual memory areas vm.max_map_count [65530] is too low, increase to at least [262144]
+		
+		
+		[1]: max file descriptors [4096] for elasticsearch process is too low, increase to at least [65536]	
+		原因 ：无法创建本地文件问题,用户最大可创建文件数太小
+		cd /etc/security
+		vi limits.conf
+		在最后面添加
+		* soft nofile 65536
+		* hard nofile 131072
+		* soft nproc 2048
+		* hard nproc 4096
+		
+		备注：* 代表Linux所有用户名称（比如 hadoop）
+		需要保存、退出、重新登录才可生效。
+		exit 
+		su elsearch 问题1即可解决
+		
+		[2]: max virtual memory areas vm.max_map_count [65530] is too low, increase to at least [262144]
+		
+		原因：最大虚拟内存太小
+		cd /etc
+		vi sysctl.conf
+		在最后面写入
+		vm.max_map_count=655360
+		保存后
+		sysctl -p
+		然后，重新启动elasticsearch，即可启动成功。
+		
+		
+		
+		此时如果访问 
+		http://192.168.132.131:9200/  可能会502
+		解决办法
+		cd /usr/local/elasticsearch-6.1.2/config
+		vi elasticsearch.yml
+		#network.host: 192.168.0.1
+		配置成 network.host: 0.0.0.0
+		
+		再次访问即可
