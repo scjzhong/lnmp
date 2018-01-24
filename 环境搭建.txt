@@ -398,3 +398,109 @@
 		配置成 network.host: 0.0.0.0
 		
 		再次访问即可
+		
+		http://192.168.132.131:9200/
+		结果如下
+		{
+		  "name" : "lHDvvtq",
+		  "cluster_name" : "elasticsearch",
+		  "cluster_uuid" : "xJOREnD4SjmFPrsDwXiD4g",
+		  "version" : {
+		    "number" : "6.1.2",
+		    "build_hash" : "5b1fea5",
+		    "build_date" : "2018-01-10T02:35:59.208Z",
+		    "build_snapshot" : false,
+		    "lucene_version" : "7.1.0",
+		    "minimum_wire_compatibility_version" : "5.6.0",
+		    "minimum_index_compatibility_version" : "5.0.0"
+		  },
+		  "tagline" : "You Know, for Search"
+		}
+		
+
+	D:	Elasticsearch 图形界面
+		安装head 插件  json 数据不友好、 使用该插件 解决了友好的界面问题
+		该插件需要node 的支持请确保node已经安装这里我已经安装了node
+		cd /usr/local
+		wget https://github.com/mobz/elasticsearch-head/archive/master.zip
+		解压
+		unzip master.zip
+		cd elasticsearch-head-master/
+		/usr/local/node-v8.5.0/bin/npm install
+		等待安装完成
+		
+		/usr/local/node-v8.5.0/bin/npm run start
+		运行
+		[root@localhost elasticsearch-head-master]# /usr/local/node-v8.5.0/bin/npm run start
+
+		> elasticsearch-head@0.0.0 start /usr/local/elasticsearch-head-master
+		> grunt server
+		
+		Running "connect:server" (connect) task
+		Waiting forever...
+		Started connect web server on http://localhost:9100
+		
+		服务已启动
+		
+		此时访问
+		
+		http://192.168.132.131:9200/
+		即可有图形化的界面出现
+		
+	F:	此时虽然head插件有显示 但是 elasticsearch 和 elasticsearch-head 是连个独立的进程 无法通信。需要配置如下
+		
+		a:	添加配置
+			/usr/local/elasticsearch-6.1.2/config
+			vi elasticsearch.yml
+			在最后面 务必按照如下完整的格式 true 前必须要有空格
+			http.cors.enabled: true
+			http.cors.allow-origin: "*"
+		b:	保存退出
+		
+	G:	此时后台启动
+		cd ..
+		cd bin
+		./elasticsearch -d 后台启动
+	H:	开启head插件
+		如果此时还没有连接成功
+		需修改监head插件源码
+		修改服务器监听地址:Gruntfile.js
+		cd /usr/local/elasticsearch-head-master
+		vi Gruntfile.js
+		添加hostname: '*'
+		connect: {
+                        server: {
+                                options: {
+                                        port: 9100,
+                                        base: '.',
+                                        keepalive: true,
+                                        hostname: '*'
+                                }
+                        }
+                }
+		
+		
+		修改连接地址：_site/app.js
+		cd /usr/local/elasticsearch-head-master/_site
+		vi app.js
+		将如下的修改为你访问的客户端地址
+		http://localhost:9200
+		如我本机的改为
+		http://192.168.132.131:9200
+		改好之后
+		cd /usr/local/elasticsearch-head-master
+		此时在浏览器里再次访问
+		以监控的ip为192.168.132.131为例
+		http://192.168.132.131:9100/
+		当连接后面的字体变成绿色的时候我们已经连接成功了。
+		
+		
+	
+6：	安装node 
+		wget https://nodejs.org/dist/v8.5.0/node-v8.5.0-linux-x64.tar.gz
+		解压
+		mv node-v8.5.0/ /usr/local
+		cd node-v8.5.0
+		ln /usr/local/node-v8.5.0/bin/node /usr/sbin/ 设置软连接
+		
+		
