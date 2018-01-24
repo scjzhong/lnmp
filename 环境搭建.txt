@@ -494,9 +494,9 @@
 		http://192.168.132.131:9100/
 		当连接后面的字体变成绿色的时候我们已经连接成功了。
 		
-		
+6：	elasticsearch分布式安装有时间再弄		
 	
-6：	安装node 
+7：	安装node 
 		wget https://nodejs.org/dist/v8.5.0/node-v8.5.0-linux-x64.tar.gz
 		解压
 		mv node-v8.5.0/ /usr/local
