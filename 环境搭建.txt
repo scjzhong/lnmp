@@ -250,8 +250,15 @@
 		kill -USR2 `cat /usr/local/php/var/run/php-fpm.pid` 		#php-fpm平滑重启
 
 		 
-		 如若出现502  注意先将user group 改为默认
-	
+		 如若出现502  注意先将user group 改为默认 nobody   （可能是权限问题）
+		
+		/usr/local/php/etc/php-fpm.d
+		php-fpm.conf 
+		 
+		listen.owner = nobody
+		listen.group = nobody
+		 
+		listen = 127.0.0.1:9000	
 	
 	
 	
