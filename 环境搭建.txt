@@ -291,8 +291,14 @@
 	
 	
 
+5：	安装node 
+		wget https://nodejs.org/dist/v8.5.0/node-v8.5.0-linux-x64.tar.gz
+		解压
+		mv node-v8.5.0/ /usr/local
+		cd node-v8.5.0
+		ln /usr/local/node-v8.5.0/bin/node /usr/sbin/ 设置软连接
 
-5：elasticsearch安装
+6：elasticsearch安装
 		wget https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-6.1.2.tar.gz
 		mv elasticsearch-6.1.2.tar.gz /usr/local/
 		tar -zxvf elasticsearch-6.1.2.tar.gz
@@ -494,13 +500,41 @@
 		http://192.168.132.131:9100/
 		当连接后面的字体变成绿色的时候我们已经连接成功了。
 		
-6：	elasticsearch分布式安装有时间再弄		
-	
-7：	安装node 
-		wget https://nodejs.org/dist/v8.5.0/node-v8.5.0-linux-x64.tar.gz
-		解压
-		mv node-v8.5.0/ /usr/local
-		cd node-v8.5.0
-		ln /usr/local/node-v8.5.0/bin/node /usr/sbin/ 设置软连接
+7：logstash
+	使用mysql作为数据的存储。用elasticsearch做搜索。就需要将数据同步到elasticsearch中
+	A:	官网下载最新的
+		wget https://artifacts.elastic.co/downloads/logstash/logstash-6.1.2.tar.gz
+		cp logstash-6.1.2.tar.gz /usr/local/
+		tar -zxvf logstash-6.1.2.tar.gz
+		cd logstash-6.1.2/bin
+		执行以下命令
+		./logstash -e 'input { stdin { } } output { stdout {} }'
+		输入helloword
+		控制台会输出以下内容即为ok
+		2018-01-25T13:24:02.112Z localhost.localdomain hellword
+		
+		或者执行以下命令
+		./logstash -e ""
+		控制台显示
+		The stdin plugin is now waiting for input:
+		[2018-01-25T21:28:46,683][INFO ][logstash.agent           ] Pipelines running {:count=>1, :pipelines=>["main"]}
+		{
+		          "type" => "stdin",
+		    "@timestamp" => 2018-01-25T13:28:46.644Z,
+		      "@version" => "1",
+		       "message" => "helloword",
+		          "host" => "localhost.localdomain"
+		}
+		即为ok
+		
+8： 安装logstash-input-jdbc插件
+	logstash-input-jdbc插件是logstash 的一个插件。
+	A:	首先查看是否安装gem。 如果没有安装 gem 的话 安装gem 
+		yum install gem
+		安装完
+		gem -v
+		查看版本号
+	B:	修改Gemfile的数据源地址。
+			
 		
 		
