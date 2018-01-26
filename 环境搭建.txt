@@ -499,6 +499,60 @@
 		以监控的ip为192.168.132.131为例
 		http://192.168.132.131:9100/
 		当连接后面的字体变成绿色的时候我们已经连接成功了。
+	I:	
+		安装配置及analysis-ik中文分词插件安装   最好是同一版本的
+		wget https://github.com/medcl/elasticsearch-analysis-ik/archive/master.zip
+		unzip master.zip
+		安装maven
+		cd elasticsearch-analysis-ik-master
+		mvn clean
+		出现
+		[INFO] BUILD SUCCESS
+		表示ok
+		mvn package
+		打包完成后
+		cd /target/releases
+		cd /usr/local/elasticsearch-6.1.2/plugins/
+		在elasticsearch 的 plugins目录下穿件 analysis-ik 目录
+		mkdir analysis-ik
+		cd -
+		cp elasticsearch-analysis-ik-6.1.1.zip /usr/local/elasticsearch-6.1.2/plugins/analysis-ik/
+		cd /usr/local/elasticsearch-6.1.2/plugins/analysis-ik/
+		
+		unzip elasticsearch-analysis-ik-6.1.1.zip
+		在ES的配置文件elasticsearch.yml中增加ik的配置
+		cd /usr/local/elasticsearch-6.1.2/config
+		vi elasticsearch.yml
+		在最后写入
+		index.analysis.analyzer.ik.type: "ik"
+		重启elasticsearch服务
+		[elsearch@localhost bin]$ ./elasticsearch
+			[2018-01-27T00:42:52,981][WARN ][o.e.b.ElasticsearchUncaughtExceptionHandler] [] uncaught exception in thread [main]
+			org.elasticsearch.bootstrap.StartupException: java.lang.IllegalArgumentException: plugin [analysis-ik] is incompatible with version [6.1.2]; was designed for version [6.1.1]
+				at org.elasticsearch.bootstrap.Elasticsearch.init(Elasticsearch.java:125) ~[elasticsearch-6.1.2.jar:6.1.2]
+				at org.elasticsearch.bootstrap.Elasticsearch.execute(Elasticsearch.java:112) ~[elasticsearch-6.1.2.jar:6.1.2]
+				at org.elasticsearch.cli.EnvironmentAwareCommand.execute(EnvironmentAwareCommand.java:86) ~[elasticsearch-6.1.2.jar:6.1.2]
+				at org.elasticsearch.cli.Command.mainWithoutErrorHandling(Command.java:124) ~[elasticsearch-cli-6.1.2.jar:6.1.2]
+				at org.elasticsearch.cli.Command.main(Command.java:90) ~[elasticsearch-cli-6.1.2.jar:6.1.2]
+				at org.elasticsearch.bootstrap.Elasticsearch.main(Elasticsearch.java:92) ~[elasticsearch-6.1.2.jar:6.1.2]
+				at org.elasticsearch.bootstrap.Elasticsearch.main(Elasticsearch.java:85) ~[elasticsearch-6.1.2.jar:6.1.2]
+			Caused by: java.lang.IllegalArgumentException: plugin [analysis-ik] is incompatible with version [6.1.2]; was designed for version [6.1.1]
+				at org.elasticsearch.plugins.PluginInfo.readFromProperties(PluginInfo.java:155) ~[elasticsearch-6.1.2.jar:6.1.2]
+				at org.elasticsearch.bootstrap.Spawner.spawnNativePluginControllers(Spawner.java:80) ~[elasticsearch-6.1.2.jar:6.1.2]
+				at org.elasticsearch.bootstrap.Bootstrap.setup(Bootstrap.java:166) ~[elasticsearch-6.1.2.jar:6.1.2]
+				at org.elasticsearch.bootstrap.Bootstrap.init(Bootstrap.java:322) ~[elasticsearch-6.1.2.jar:6.1.2]
+				at org.elasticsearch.bootstrap.Elasticsearch.init(Elasticsearch.java:121) ~[elasticsearch-6.1.2.jar:6.1.2]
+				... 6 more
+			
+		报如下的错误。
+		最新版本的es 是6.1.2的而我用的分词插件是6.1.1的所以是没法用的。
+		分词等6.1.2的分词出来再继续
+		
+		
+		
+		
+		
+		
 		
 7：logstash
 	使用mysql作为数据的存储。用elasticsearch做搜索。就需要将数据同步到elasticsearch中
@@ -527,6 +581,7 @@
 		}
 		即为ok
 		
+		
 8： 安装logstash-input-jdbc插件
 	logstash-input-jdbc插件是logstash 的一个插件。
 	A:	首先查看是否安装gem。 如果没有安装 gem 的话 安装gem 
@@ -534,7 +589,76 @@
 		安装完
 		gem -v
 		查看版本号
-	B:	修改Gemfile的数据源地址。
-			
+	B:	cd /usr/local/logstash-6.1.2/bin
+		通过自带的命令安装（较慢）
+		./logstash-plugin install logstash-input-jdbc
 		
+		Validating logstash-input-jdbc
+		Installing logstash-input-jdbc
+		Installation successful
+		
+		安装完成
+		
+		wget https://dev.mysql.com/get/Downloads/Connector-J/mysql-connector-java-5.1.45.tar.gz		
+		cp mysql-connector-java-5.1.45.tar.gz	/usr/local/logstash-6.1.2
+		创建两个配置文件
+		//@Todo
+		
+		
+		
+		创建先建立索引，然后定义映射，数据最后添加 
+		curl -XPUT "http://192.168.132.131:9200/product" -d '{
+		//    "settings" : {
+		//        "analysis" : {
+		//            "analyzer" : {
+		//                "ik-自定义" : {
+		//                    "tokenizer" : "ik_max_word"
+		//                }
+		 //           }
+		//        }
+		//    },
+		    "mappings" : {
+		        "_default_":{
+		          "_all": { "enabled":  false } // 关闭_all字段，因为我们只搜索title字段
+		        },
+		        "jdbc" : {
+		            "dynamic" : true,// 是否启用“动态修改索引”
+		            "properties" : {
+		                "title" : {
+		                    "type" : "string",
+		                    "analyzer" : "ik_max_word"
+		                }
+		            }
+		        }
+		    }
+		}'
+		如果报这个错需要指定head 头
+		{"error":"Content-Type header [application/x-www-form-urlencoded] is not supported","status":406}
+		
+		
+		curl -H "Content-Type: application/json" -XPUT "http://192.168.132.131:9200/product" -d '{
+		//    "settings" : {
+		//        "analysis" : {
+		//            "analyzer" : {
+		//                "ik-自定义" : {
+		//                    "tokenizer" : "ik_max_word"
+		//                }
+		 //           }
+		//        }
+		//    },
+		    "mappings" : {
+		        "_default_":{
+		          "_all": { "enabled":  false } // 关闭_all字段，因为我们只搜索title字段
+		        },
+		        "jdbc" : {
+		            "dynamic" : true,// 是否启用“动态修改索引”
+		            "properties" : {
+		                "title" : {
+		                    "type" : "string",
+		                    "analyzer" : "ik_max_word"
+		                }
+		            }
+		        }
+		    }
+		}'
 		
