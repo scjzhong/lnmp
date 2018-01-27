@@ -604,61 +604,99 @@
 		创建两个配置文件
 		//@Todo
 		
+		cd /usr/local/logstash-6.1.2
+		mdkir etc
+		cd etc
+		touch index.conf index.sql
+		vi index.conf（索引配置文件）
 		
-		
-		创建先建立索引，然后定义映射，数据最后添加 
-		curl -XPUT "http://192.168.132.131:9200/product" -d '{
-		//    "settings" : {
-		//        "analysis" : {
-		//            "analyzer" : {
-		//                "ik-自定义" : {
-		//                    "tokenizer" : "ik_max_word"
-		//                }
-		 //           }
-		//        }
-		//    },
-		    "mappings" : {
-		        "_default_":{
-		          "_all": { "enabled":  false } // 关闭_all字段，因为我们只搜索title字段
-		        },
-		        "jdbc" : {
-		            "dynamic" : true,// 是否启用“动态修改索引”
-		            "properties" : {
-		                "title" : {
-		                    "type" : "string",
-		                    "analyzer" : "ik_max_word"
-		                }
-		            }
-		        }
+		input {
+		    stdin {
 		    }
-		}'
-		如果报这个错需要指定head 头
-		{"error":"Content-Type header [application/x-www-form-urlencoded] is not supported","status":406}
-		
-		
-		curl -H "Content-Type: application/json" -XPUT "http://192.168.132.131:9200/product" -d '{
-		//    "settings" : {
-		//        "analysis" : {
-		//            "analyzer" : {
-		//                "ik-自定义" : {
-		//                    "tokenizer" : "ik_max_word"
-		//                }
-		 //           }
-		//        }
-		//    },
-		    "mappings" : {
-		        "_default_":{
-		          "_all": { "enabled":  false } // 关闭_all字段，因为我们只搜索title字段
-		        },
-		        "jdbc" : {
-		            "dynamic" : true,// 是否启用“动态修改索引”
-		            "properties" : {
-		                "title" : {
-		                    "type" : "string",
-		                    "analyzer" : "ik_max_word"
-		                }
-		            }
-		        }
+		    jdbc {
+		      # mysql 数据库链接,test为数据库名
+		      jdbc_connection_string => "jdbc:mysql://192.168.132.131:3306/test?useSSL=false&useUnicode=true&characterEncoding=UTF-8"
+		      # 用户名和密码
+		      jdbc_user => "root"
+		      jdbc_password => "*******"
+		      # 驱动
+		      jdbc_driver_library => "/usr/local/logstash-6.1.2/mysql-connector-java-5.1.45-bin.jar"
+		      # 驱动类名
+		      jdbc_driver_class => "com.mysql.jdbc.Driver"
+		      jdbc_paging_enabled => "true"
+		      # 分页数
+		      jdbc_page_size => "50000"
+		      # 执行的sql 文件路径+名称 也可直接用sql
+		      #statement_filepath => "/usr/local/logstash-6.1.2/etc/index.sql"
+		      # 可用sql
+		      statement => "select * from user"
+		      #  设置监听间隔  各字段含义（由左至右）分、时、天、月、年，全部为*默认含义为每分钟都更新
+		      schedule => "* * * * *"
+		      # 索引类型 一般以数据库中的表命名
+		      type => "user"
 		    }
-		}'
+		}
+		
+		filter {
+		    json {
+		        source => "message"
+		        remove_field => ["message"]
+		    }
+		}
+		
+		
+		output {
+			 elasticsearch {
+		        	hosts => ["192.168.132.131:9200"]
+		        	# 索引
+		        	index => "test"
+		        	document_id => "%{id}"
+		   	   }
+		
+			 stdout {
+				#以JSON格式输出
+		  		codec => json_lines
+			}
+		}
+		
+		:wq
+		保存后
+		
+		cd /usr/local/logstash-6.1.2
+		./bin/logstash -f ./etc/index.conf（指定配置文件启动）
+		启动需要点时间
+		[2018-01-27T16:16:05,389][INFO ][logstash.pipeline        ] Pipeline started {"pipeline.id"=>"main"}
+		The stdin plugin is now waiting for input:
+		[2018-01-27T16:16:05,843][INFO ][logstash.agent           ] Pipelines running {:count=>1, :pipelines=>["main"]}
+		 出现以上信息意味着logstash 启动成功
+		此时往user表中插入一条数据
+		INSERT INTO user (`name`,`age`) value ('张三', 45);
+		过几秒
+		es中也便有了这条数据
+		
+		测试sql 
+		INSERT INTO user (`name`,`age`,`create_time`) value ('张三', 45, unix_timestamp());
+		
+		注意
+		当插入第一条数据时
+		logstash控制台输出一条数据
+		{"@version":"1","@timestamp":"2018-01-27T08:20:00.402Z","name":"张三","id":32,"type":"user","age":45}
+		当插入第二条数据时
+		logstash控制台输出两条数据
+		{"@version":"1","@timestamp":"2018-01-27T08:21:00.323Z","name":"张三","id":32,"type":"user","age":45}
+		{"@version":"1","@timestamp":"2018-01-27T08:21:00.323Z","name":"张三","id":33,"type":"user","age":45}	
+		也就是一味着我们上面配置的是全量的同步而非增量的。
+		以上是全部的数据是非增量添加的。
+		意味 每次定时跑的时候会权标扫描一次 然后 更新到es中
+		（注意 启动同步时 不会立刻去做一次数据的同步）
+	
+	C:
+		以下我们将配置增量添加的
+			
+		
+				
+		
+		
+		
+		
 		
