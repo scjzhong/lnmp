@@ -653,8 +653,16 @@
         			#password => "changeme"
 		        	# 索引
 		        	index => "test"
+					#指定索引类型
+		        	document_type => "user"
 		        	# 自增ID 需要关联的数据库中有有一个id字段，对应索引的id号
 		        	document_id => "%{id}"
+		        	
+                    #以下是创建模板暂时不需要
+                    #manage_template => true #注意默认为true,一定不能设置为false
+                    #template_overwrite => true #如果设置为true，模板名字一样的时候，新的模板会覆盖旧的模板
+                    #template_name => "myLogstash" #注意这个名字是用来查找映射配置的，尽量设置成全局唯一的
+　　                                 #template => "/home/apps/logstash/template/logstash.json" #映射配置文件的位置（此处可能会报错 后面再解决）
 		   	   }
 		
 			 stdout {
@@ -753,6 +761,34 @@
 	经过这样发现只有新增的数据才会 被更新。（需要更新update_time）的时间
 	
 	目前我们已经实现增量更新了。
-		
+	（针对删除操作 稍后做处理）		
 			
+			
+9：	elasticsearch-php 插件支持
+	
+	A:	安装elasticsearch-php
+		该插件作者建议composer安装
+		安装composer
+		建议 cd 到 /usr/local/php 我这里没有
+		
+		curl -s http://getcomposer.org/installer | php
+	B:	在项目中穿件	composer.json文件
+		vi composer.json
+		写入如下数据
+		{
+	        "require": {
+	            "elasticsearch/elasticsearch": "~6.0"
+	        }
+	    }
+	    
+		cd 到项目根目录
+		因为我的是所以执行下面的命令
+		php /root/composer.phar install
+		这可能需要点时间
+		安装完成后
+		目录下
+		composer.lock文件 vendor 目录
+		
+	
+	
 		
