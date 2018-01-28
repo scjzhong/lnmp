@@ -583,6 +583,7 @@
 		
 		
 8： 安装logstash-input-jdbc插件
+	附上官网文档 https://www.elastic.co/guide/en/logstash/current/plugins-inputs-jdbc.html
 	logstash-input-jdbc插件是logstash 的一个插件。
 	A:	首先查看是否安装gem。 如果没有安装 gem 的话 安装gem 
 		yum install gem
@@ -648,8 +649,11 @@
 		output {
 			 elasticsearch {
 		        	hosts => ["192.168.132.131:9200"]
+		        	#user => "elastic"   //如果这里使用x-pack作为安全管理，要配置user和password；
+        			#password => "changeme"
 		        	# 索引
 		        	index => "test"
+		        	# 自增ID 需要关联的数据库中有有一个id字段，对应索引的id号
 		        	document_id => "%{id}"
 		   	   }
 		
@@ -675,7 +679,7 @@
 		es中也便有了这条数据
 		
 		测试sql 
-		INSERT INTO user (`name`,`age`,`create_time`) value ('张三', 45, unix_timestamp());
+		INSERT INTO user (`name`,`age`,`update_time`) value ('张三', 45, unix_timestamp());
 		
 		注意
 		当插入第一条数据时
@@ -689,14 +693,66 @@
 		以上是全部的数据是非增量添加的。
 		意味 每次定时跑的时候会权标扫描一次 然后 更新到es中
 		（注意 启动同步时 不会立刻去做一次数据的同步）
+		
+		全量索引的用处是当你的表中已经有n条数据的时候 第一同步的时候可以使用全量（注意预留足够的创建索引所需的时间 和 磁盘空间）
 	
 	C:
 		以下我们将配置增量添加的
-			
-		
+		首先 获取下系统时间戳
+		date +%s
+		cd /usr/local/logstash-6.1.2/etc
+		vi index.sql
+		SELECT
+		    id,
+		    name,
+		    age,
+		    update_time
+		FROM
+		    user
+		WHERE
+		    update_time >= :sql_last_value
+		（sql_last_value不是sql 的写法）
 				
+		修改index.conf
 		
+		# 执行的sql 文件路径+名称 也可直接用sql
+        statement_filepath => "/usr/local/logstash-6.1.2/etc/index.sql"
+        # 可用sql
+        #statement => "select * from user"
+        
+       	再次启动 logstash
+       	SELECT
+		    id,
+		    name,
+		    age,
+		    update_time
+		FROM
+		    user
+		WHERE
+		    update_time >= '2018-01-27 09:15:00'
+		执行计划中的sql 语句是如上的。少个8个小时        
+        
+                新的sql执行语句
+        SELECT
+		    id,
+		    name,
+		    age,
+		    update_time
+		FROM
+		    user
+		WHERE
+		    update_time >= DATE_ADD(:sql_last_value,INTERVAL 8 HOUR)
+		    
+        
+                即可
+         
+                再次启动logstash       
+        发现依然 查不到数据
+        原来sql 写错了改成如下
+        SELECT id,name,age,update_time FROM user WHERE update_time >= UNIX_TIMESTAMP(date_add(:sql_last_value,interval 8 hour))
+	经过这样发现只有新增的数据才会 被更新。（需要更新update_time）的时间
+	
+	目前我们已经实现增量更新了。
 		
-		
-		
+			
 		
