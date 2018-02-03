@@ -764,6 +764,108 @@
 	（针对删除操作 稍后做处理）		
 			
 			
+			
+			
+			
+	D:	配置多模板支持
+		input {
+			    stdin {
+			    }
+			    jdbc {
+			      # mysql 数据库链接,test为数据库名
+			      jdbc_connection_string => "jdbc:mysql://192.168.132.131:3306/test?useSSL=false&useUnicode=true&characterEncoding=UTF-8"
+			      # 用户名和密码
+			      jdbc_user => "root"
+			      jdbc_password => "nihao123"
+			      # 驱动
+			      jdbc_driver_library => "/usr/local/logstash-6.1.2/mysql-connector-java-5.1.45-bin.jar"
+			      # 驱动类名
+			      jdbc_driver_class => "com.mysql.jdbc.Driver"
+			      jdbc_paging_enabled => "true"
+			      # 分页数
+			      jdbc_page_size => "50000"
+			      # 执行的sql 文件路径+名称 也可直接用sql
+			      statement_filepath => "/usr/local/logstash-6.1.2/etc/index.sql"
+			      # 可用sql
+			      #statement => "select * from user"
+			      #  设置监听间隔  各字段含义（由左至右）分、时、天、月、年，全部为*默认含义为每分钟都更新
+			      schedule => "* * * * *"
+			      type => "user"
+			    }
+	                    jdbc {
+	                      # mysql 数据库链接,test为数据库名
+	                      jdbc_connection_string => "jdbc:mysql://192.168.132.131:3306/test?useSSL=false&useUnicode=true&characterEncoding=UTF-8"
+	                      # 用户名和密码
+	                      jdbc_user => "root"
+	                      jdbc_password => "nihao123"
+	                      # 驱动
+	                      jdbc_driver_library => "/usr/local/logstash-6.1.2/mysql-connector-java-5.1.45-bin.jar"
+	                      # 驱动类名
+	                      jdbc_driver_class => "com.mysql.jdbc.Driver"
+	                      jdbc_paging_enabled => "true"
+	                      # 分页数
+	                      jdbc_page_size => "50000"
+	                      # 执行的sql 文件路径+名称 也可直接用sql
+	                      statement_filepath => "/usr/local/logstash-6.1.2/etc/news.sql"
+	                      # 可用sql
+	                      #statement => "select * from user"
+	                      #  设置监听间隔  各字段含义（由左至右）分、时、天、月、年，全部为*默认含义为每分钟都更新
+	                      schedule => "* * * * *"
+	                      type => "news"
+	                    }
+	
+			}
+			
+			filter {
+			    json {
+			        source => "message"
+			        remove_field => ["message"]
+			    }
+			}
+			
+			
+			output {
+	
+				if [type] == "user"{
+					 elasticsearch {
+			        		hosts => ["192.168.132.131:9200"]
+						#指定索引
+			        		index => "test"
+						#指定索引类型
+						document_type => "user"
+			        		document_id => "%{id}"
+						#以下是创建模板暂时不需要
+						#manage_template => true #注意默认为true,一定不能设置为false
+	        				#template_overwrite => true #如果设置为true，模板名字一样的时候，新的模板会覆盖旧的模板
+	        				#template_name => "myLogstash" #注意这个名字是用来查找映射配置的，尽量设置成全局唯一的
+			   	   	}
+				}
+	
+				if [type] == "news"{
+					elasticsearch {
+	                	                hosts => ["192.168.132.131:9200"]
+	                        	        #指定索引
+	                                	index => "news"
+	        	                        #指定索引类型
+	                	                document_type => "news"
+	                        	        document_id => "%{id}"
+	                                	#以下是创建模板暂时不需要
+	       		                        #manage_template => true #注意默认为true,一定不能设置为false
+	                        	        #template_overwrite => true #如果设置为true，模板名字一样的时候，新的模板会覆盖旧的模板
+	                                	#template_name => "myLogstash" #注意这个名字是用来查找映射配置的，尽量设置成全局唯一的
+	                           	}
+				}
+				 stdout {
+					#以JSON格式输出
+			  		codec => json_lines
+				}
+			}
+			配置多个jdbc指定不同的type即可。具体见上面的配置
+	
+			
+			
+			
+			
 9：	elasticsearch-php 插件支持
 	
 	A:	安装elasticsearch-php
