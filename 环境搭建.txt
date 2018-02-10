@@ -1,10 +1,10 @@
-1£º°²×°jdk
-	A:	linux ÏÂwget http://download.oracle.com/otn-pub/java/jdk/8u162-b12/0da788060d494f5095bf8624735fa2f1/jdk-8u162-linux-x64.tar.gz  
+1ï¼šå®‰è£…jdk
+	A:	linux ä¸‹wget http://download.oracle.com/otn-pub/java/jdk/8u162-b12/0da788060d494f5095bf8624735fa2f1/jdk-8u162-linux-x64.tar.gz  
 	B:	makdir /usr/local/java  
 	C:	mv jdk-8u162-linux-x64.tar.gz /usr/local/java  
 	D:	tar -zxvf jdk-8u162-linux-x64.tar.gz  
 	E:	vi /etc/profile  
-	F: 	ÔÚÎÄ¼şµÄ×îºóĞ´Èë  
+	F: 	åœ¨æ–‡ä»¶çš„æœ€åå†™å…¥  
 		export JAVA_HOME=/usr/local/java/jdk1.8.0_162  
 		xport JRE_HOME=/usr/local/java/jdk1.8.0_162/jre  
 		export PATH=$PATH:/usr/local/java/jdk1.8.0_162/bin  
@@ -12,30 +12,30 @@
 		
 	G:	source /etc/profile  
 	
-	H:	java -versionÏÔÊ¾ÈçÏÂĞÅÏ¢¼´¿É  
+	H:	java -versionæ˜¾ç¤ºå¦‚ä¸‹ä¿¡æ¯å³å¯  
 		java version "1.8.0_162"  
 		Java(TM) SE Runtime Environment (build 1.8.0_162-b12)  
 		Java HotSpot(TM) 64-Bit Server VM (build 25.162-b12, mixed mode)  
-		jdkÖÁ´Ë°²×°Íê±Ï  
+		jdkè‡³æ­¤å®‰è£…å®Œæ¯•  
 
 
 
-5£º	°²×°node 
+5ï¼š	å®‰è£…node 
 		wget https://nodejs.org/dist/v8.5.0/node-v8.5.0-linux-x64.tar.gz
-		½âÑ¹
+		è§£å‹
 		mv node-v8.5.0/ /usr/local
 		cd node-v8.5.0
-		ln /usr/local/node-v8.5.0/bin/node /usr/sbin/ ÉèÖÃÈíÁ¬½Ó
+		ln /usr/local/node-v8.5.0/bin/node /usr/sbin/ è®¾ç½®è½¯è¿æ¥
 
-6£ºelasticsearch°²×°
+6ï¼šelasticsearchå®‰è£…
 		wget https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-6.1.2.tar.gz
 		mv elasticsearch-6.1.2.tar.gz /usr/local/
 		tar -zxvf elasticsearch-6.1.2.tar.gz
 		cd elasticsearch-6.1.2
 		cd bin
-		Ö´ĞĞÆô¶¯¿ÉÄÜ»á±¨´í
+		æ‰§è¡Œå¯åŠ¨å¯èƒ½ä¼šæŠ¥é”™
 		./elasticsearch
-		±¨´íÈçÏÂ
+		æŠ¥é”™å¦‚ä¸‹
 		
 		[2018-01-24T21:07:17,532][WARN ][o.e.b.ElasticsearchUncaughtExceptionHandler] [] uncaught exception in thread [main]
 		org.elasticsearch.bootstrap.StartupException: java.lang.RuntimeException: can not run elasticsearch as root
@@ -54,26 +54,26 @@
 			... 6 more
 			
 			
-		×¢ÒâÕâ¸ö±¨´í  org.elasticsearch.bootstrap.StartupException: java.lang.RuntimeException: can not run elasticsearch as root
-		elasticsearch ²»ÄÜÒÔroot ÓÃ»§ÔËĞĞ¡£Ò²ÊÇÎªÁË°²È«¿¼ÂÇ
+		æ³¨æ„è¿™ä¸ªæŠ¥é”™  org.elasticsearch.bootstrap.StartupException: java.lang.RuntimeException: can not run elasticsearch as root
+		elasticsearch ä¸èƒ½ä»¥root ç”¨æˆ·è¿è¡Œã€‚ä¹Ÿæ˜¯ä¸ºäº†å®‰å…¨è€ƒè™‘
 		
-		ÒòÎª°²È«ÎÊÌâelasticsearch ²»ÈÃÓÃrootÓÃ»§Ö±½ÓÔËĞĞ£¬ËùÒÔÒª´´½¨ĞÂÓÃ»§
+		å› ä¸ºå®‰å…¨é—®é¢˜elasticsearch ä¸è®©ç”¨rootç”¨æˆ·ç›´æ¥è¿è¡Œï¼Œæ‰€ä»¥è¦åˆ›å»ºæ–°ç”¨æˆ·
 	
-		½¨Òé´´½¨Ò»¸öµ¥¶ÀµÄÓÃ»§ÓÃÀ´ÔËĞĞElasticSearch
+		å»ºè®®åˆ›å»ºä¸€ä¸ªå•ç‹¬çš„ç”¨æˆ·ç”¨æ¥è¿è¡ŒElasticSearch
 		
 		
-	A:	´´½¨elsearchÓÃ»§×é¼°elsearchÓÃ»§
+	A:	åˆ›å»ºelsearchç”¨æˆ·ç»„åŠelsearchç”¨æˆ·
 		groupadd elsearch
 		useradd elsearch -g elsearch -p elasticsearch
 	
-	B:	¸ü¸ÄelasticsearchÎÄ¼ş¼Ğ¼°ÄÚ²¿ÎÄ¼şµÄËùÊôÓÃ»§¼°×éÎªelsearch:elsearch
+	B:	æ›´æ”¹elasticsearchæ–‡ä»¶å¤¹åŠå†…éƒ¨æ–‡ä»¶çš„æ‰€å±ç”¨æˆ·åŠç»„ä¸ºelsearch:elsearch
 		cd /usr/local
 		chown -R elsearch:elsearch  elasticsearch-6.1.2
 		
-	C:	ÇĞ»»µ½elsearchÓÃ»§ÔÙÆô¶¯
+	C:	åˆ‡æ¢åˆ°elsearchç”¨æˆ·å†å¯åŠ¨
 		su elsearch
 		cd /elasticsearch-6.1.2/bin
-		Æô¶¯
+		å¯åŠ¨
 		./elasticsearch
 		
 		
@@ -87,55 +87,55 @@
 		[2018-01-24T21:28:59,922][INFO ][o.e.h.n.Netty4HttpServerTransport] [lHDvvtq] publish_address {127.0.0.1:9200}, bound_addresses {[::1]:9200}, {127.0.0.1:9200}
 		[2018-01-24T21:28:59,922][INFO ][o.e.n.Node               ] [lHDvvtq] started
 		
-		µ±³öÏÖ   starting ...   started ¼´Æô¶¯³É¹¦
+		å½“å‡ºç°   starting ...   started å³å¯åŠ¨æˆåŠŸ
 		
 		
-		ÔÙ´ÎÆô¶¯¿ÉÄÜ»áÓöµ½µÄ´íÎó
+		å†æ¬¡å¯åŠ¨å¯èƒ½ä¼šé‡åˆ°çš„é”™è¯¯
 		ERROR: [2] bootstrap checks failed
 		[1]: max file descriptors [4096] for elasticsearch process is too low, increase to at least [65536]	
 		[2]: max virtual memory areas vm.max_map_count [65530] is too low, increase to at least [262144]
 		
 		
 		[1]: max file descriptors [4096] for elasticsearch process is too low, increase to at least [65536]	
-		Ô­Òò £ºÎŞ·¨´´½¨±¾µØÎÄ¼şÎÊÌâ,ÓÃ»§×î´ó¿É´´½¨ÎÄ¼şÊıÌ«Ğ¡
+		åŸå›  ï¼šæ— æ³•åˆ›å»ºæœ¬åœ°æ–‡ä»¶é—®é¢˜,ç”¨æˆ·æœ€å¤§å¯åˆ›å»ºæ–‡ä»¶æ•°å¤ªå°
 		cd /etc/security
 		vi limits.conf
-		ÔÚ×îºóÃæÌí¼Ó
+		åœ¨æœ€åé¢æ·»åŠ 
 		* soft nofile 65536
 		* hard nofile 131072
 		* soft nproc 2048
 		* hard nproc 4096
 		
-		±¸×¢£º* ´ú±íLinuxËùÓĞÓÃ»§Ãû³Æ£¨±ÈÈç hadoop£©
-		ĞèÒª±£´æ¡¢ÍË³ö¡¢ÖØĞÂµÇÂ¼²Å¿ÉÉúĞ§¡£
+		å¤‡æ³¨ï¼š* ä»£è¡¨Linuxæ‰€æœ‰ç”¨æˆ·åç§°ï¼ˆæ¯”å¦‚ hadoopï¼‰
+		éœ€è¦ä¿å­˜ã€é€€å‡ºã€é‡æ–°ç™»å½•æ‰å¯ç”Ÿæ•ˆã€‚
 		exit 
-		su elsearch ÎÊÌâ1¼´¿É½â¾ö
+		su elsearch é—®é¢˜1å³å¯è§£å†³
 		
 		[2]: max virtual memory areas vm.max_map_count [65530] is too low, increase to at least [262144]
 		
-		Ô­Òò£º×î´óĞéÄâÄÚ´æÌ«Ğ¡
+		åŸå› ï¼šæœ€å¤§è™šæ‹Ÿå†…å­˜å¤ªå°
 		cd /etc
 		vi sysctl.conf
-		ÔÚ×îºóÃæĞ´Èë
+		åœ¨æœ€åé¢å†™å…¥
 		vm.max_map_count=655360
-		±£´æºó
+		ä¿å­˜å
 		sysctl -p
-		È»ºó£¬ÖØĞÂÆô¶¯elasticsearch£¬¼´¿ÉÆô¶¯³É¹¦¡£
+		ç„¶åï¼Œé‡æ–°å¯åŠ¨elasticsearchï¼Œå³å¯å¯åŠ¨æˆåŠŸã€‚
 		
 		
 		
-		´ËÊ±Èç¹û·ÃÎÊ 
-		http://192.168.132.131:9200/  ¿ÉÄÜ»á502
-		½â¾ö°ì·¨
+		æ­¤æ—¶å¦‚æœè®¿é—® 
+		http://192.168.132.131:9200/  å¯èƒ½ä¼š502
+		è§£å†³åŠæ³•
 		cd /usr/local/elasticsearch-6.1.2/config
 		vi elasticsearch.yml
 		#network.host: 192.168.0.1
-		ÅäÖÃ³É network.host: 0.0.0.0
+		é…ç½®æˆ network.host: 0.0.0.0
 		
-		ÔÙ´Î·ÃÎÊ¼´¿É
+		å†æ¬¡è®¿é—®å³å¯
 		
 		http://192.168.132.131:9200/
-		½á¹ûÈçÏÂ
+		ç»“æœå¦‚ä¸‹
 		{
 		  "name" : "lHDvvtq",
 		  "cluster_name" : "elasticsearch",
@@ -153,19 +153,19 @@
 		}
 		
 
-	D:	Elasticsearch Í¼ĞÎ½çÃæ
-		°²×°head ²å¼ş  json Êı¾İ²»ÓÑºÃ¡¢ Ê¹ÓÃ¸Ã²å¼ş ½â¾öÁËÓÑºÃµÄ½çÃæÎÊÌâ
-		¸Ã²å¼şĞèÒªnode µÄÖ§³ÖÇëÈ·±£nodeÒÑ¾­°²×°ÕâÀïÎÒÒÑ¾­°²×°ÁËnode
+	D:	Elasticsearch å›¾å½¢ç•Œé¢
+		å®‰è£…head æ’ä»¶  json æ•°æ®ä¸å‹å¥½ã€ ä½¿ç”¨è¯¥æ’ä»¶ è§£å†³äº†å‹å¥½çš„ç•Œé¢é—®é¢˜
+		è¯¥æ’ä»¶éœ€è¦node çš„æ”¯æŒè¯·ç¡®ä¿nodeå·²ç»å®‰è£…è¿™é‡Œæˆ‘å·²ç»å®‰è£…äº†node
 		cd /usr/local
 		wget https://github.com/mobz/elasticsearch-head/archive/master.zip
-		½âÑ¹
+		è§£å‹
 		unzip master.zip
 		cd elasticsearch-head-master/
 		/usr/local/node-v8.5.0/bin/npm install
-		µÈ´ı°²×°Íê³É
+		ç­‰å¾…å®‰è£…å®Œæˆ
 		
 		/usr/local/node-v8.5.0/bin/npm run start
-		ÔËĞĞ
+		è¿è¡Œ
 		[root@localhost elasticsearch-head-master]# /usr/local/node-v8.5.0/bin/npm run start
 
 		> elasticsearch-head@0.0.0 start /usr/local/elasticsearch-head-master
@@ -175,34 +175,34 @@
 		Waiting forever...
 		Started connect web server on http://localhost:9100
 		
-		·şÎñÒÑÆô¶¯
+		æœåŠ¡å·²å¯åŠ¨
 		
-		´ËÊ±·ÃÎÊ
+		æ­¤æ—¶è®¿é—®
 		
 		http://192.168.132.131:9200/
-		¼´¿ÉÓĞÍ¼ĞÎ»¯µÄ½çÃæ³öÏÖ
+		å³å¯æœ‰å›¾å½¢åŒ–çš„ç•Œé¢å‡ºç°
 		
-	F:	´ËÊ±ËäÈ»head²å¼şÓĞÏÔÊ¾ µ«ÊÇ elasticsearch ºÍ elasticsearch-head ÊÇÁ¬¸ö¶ÀÁ¢µÄ½ø³Ì ÎŞ·¨Í¨ĞÅ¡£ĞèÒªÅäÖÃÈçÏÂ
+	F:	æ­¤æ—¶è™½ç„¶headæ’ä»¶æœ‰æ˜¾ç¤º ä½†æ˜¯ elasticsearch å’Œ elasticsearch-head æ˜¯è¿ä¸ªç‹¬ç«‹çš„è¿›ç¨‹ æ— æ³•é€šä¿¡ã€‚éœ€è¦é…ç½®å¦‚ä¸‹
 		
-		a:	Ìí¼ÓÅäÖÃ
+		a:	æ·»åŠ é…ç½®
 			/usr/local/elasticsearch-6.1.2/config
 			vi elasticsearch.yml
-			ÔÚ×îºóÃæ Îñ±Ø°´ÕÕÈçÏÂÍêÕûµÄ¸ñÊ½ true Ç°±ØĞëÒªÓĞ¿Õ¸ñ
+			åœ¨æœ€åé¢ åŠ¡å¿…æŒ‰ç…§å¦‚ä¸‹å®Œæ•´çš„æ ¼å¼ true å‰å¿…é¡»è¦æœ‰ç©ºæ ¼
 			http.cors.enabled: true
 			http.cors.allow-origin: "*"
-		b:	±£´æÍË³ö
+		b:	ä¿å­˜é€€å‡º
 		
-	G:	´ËÊ±ºóÌ¨Æô¶¯
+	G:	æ­¤æ—¶åå°å¯åŠ¨
 		cd ..
 		cd bin
-		./elasticsearch -d ºóÌ¨Æô¶¯
-	H:	¿ªÆôhead²å¼ş
-		Èç¹û´ËÊ±»¹Ã»ÓĞÁ¬½Ó³É¹¦
-		ĞèĞŞ¸Ä¼àhead²å¼şÔ´Âë
-		ĞŞ¸Ä·şÎñÆ÷¼àÌıµØÖ·:Gruntfile.js
+		./elasticsearch -d åå°å¯åŠ¨
+	H:	å¼€å¯headæ’ä»¶
+		å¦‚æœæ­¤æ—¶è¿˜æ²¡æœ‰è¿æ¥æˆåŠŸ
+		éœ€ä¿®æ”¹ç›‘headæ’ä»¶æºç 
+		ä¿®æ”¹æœåŠ¡å™¨ç›‘å¬åœ°å€:Gruntfile.js
 		cd /usr/local/elasticsearch-head-master
 		vi Gruntfile.js
-		Ìí¼Óhostname: '*'
+		æ·»åŠ hostname: '*'
 		connect: {
                         server: {
                                 options: {
@@ -215,46 +215,46 @@
                 }
 		
 		
-		ĞŞ¸ÄÁ¬½ÓµØÖ·£º_site/app.js
+		ä¿®æ”¹è¿æ¥åœ°å€ï¼š_site/app.js
 		cd /usr/local/elasticsearch-head-master/_site
 		vi app.js
-		½«ÈçÏÂµÄĞŞ¸ÄÎªÄã·ÃÎÊµÄ¿Í»§¶ËµØÖ·
+		å°†å¦‚ä¸‹çš„ä¿®æ”¹ä¸ºä½ è®¿é—®çš„å®¢æˆ·ç«¯åœ°å€
 		http://localhost:9200
-		ÈçÎÒ±¾»úµÄ¸ÄÎª
+		å¦‚æˆ‘æœ¬æœºçš„æ”¹ä¸º
 		http://192.168.132.131:9200
-		¸ÄºÃÖ®ºó
+		æ”¹å¥½ä¹‹å
 		cd /usr/local/elasticsearch-head-master
-		´ËÊ±ÔÚä¯ÀÀÆ÷ÀïÔÙ´Î·ÃÎÊ
-		ÒÔ¼à¿ØµÄipÎª192.168.132.131ÎªÀı
+		æ­¤æ—¶åœ¨æµè§ˆå™¨é‡Œå†æ¬¡è®¿é—®
+		ä»¥ç›‘æ§çš„ipä¸º192.168.132.131ä¸ºä¾‹
 		http://192.168.132.131:9100/
-		µ±Á¬½ÓºóÃæµÄ×ÖÌå±ä³ÉÂÌÉ«µÄÊ±ºòÎÒÃÇÒÑ¾­Á¬½Ó³É¹¦ÁË¡£
+		å½“è¿æ¥åé¢çš„å­—ä½“å˜æˆç»¿è‰²çš„æ—¶å€™æˆ‘ä»¬å·²ç»è¿æ¥æˆåŠŸäº†ã€‚
 	I:	
-		°²×°ÅäÖÃ¼°analysis-ikÖĞÎÄ·Ö´Ê²å¼ş°²×°   ×îºÃÊÇÍ¬Ò»°æ±¾µÄ
+		å®‰è£…é…ç½®åŠanalysis-ikä¸­æ–‡åˆ†è¯æ’ä»¶å®‰è£…   æœ€å¥½æ˜¯åŒä¸€ç‰ˆæœ¬çš„
 		wget https://github.com/medcl/elasticsearch-analysis-ik/archive/master.zip
 		unzip master.zip
-		°²×°maven
+		å®‰è£…maven
 		cd elasticsearch-analysis-ik-master
 		mvn clean
-		³öÏÖ
+		å‡ºç°
 		[INFO] BUILD SUCCESS
-		±íÊ¾ok
+		è¡¨ç¤ºok
 		mvn package
-		´ò°üÍê³Éºó
+		æ‰“åŒ…å®Œæˆå
 		cd /target/releases
 		cd /usr/local/elasticsearch-6.1.2/plugins/
-		ÔÚelasticsearch µÄ pluginsÄ¿Â¼ÏÂ´©¼ş analysis-ik Ä¿Â¼
+		åœ¨elasticsearch çš„ pluginsç›®å½•ä¸‹ç©¿ä»¶ analysis-ik ç›®å½•
 		mkdir analysis-ik
 		cd -
 		cp elasticsearch-analysis-ik-6.1.1.zip /usr/local/elasticsearch-6.1.2/plugins/analysis-ik/
 		cd /usr/local/elasticsearch-6.1.2/plugins/analysis-ik/
 		
 		unzip elasticsearch-analysis-ik-6.1.1.zip
-		ÔÚESµÄÅäÖÃÎÄ¼şelasticsearch.ymlÖĞÔö¼ÓikµÄÅäÖÃ
+		åœ¨ESçš„é…ç½®æ–‡ä»¶elasticsearch.ymlä¸­å¢åŠ ikçš„é…ç½®
 		cd /usr/local/elasticsearch-6.1.2/config
 		vi elasticsearch.yml
-		ÔÚ×îºóĞ´Èë
+		åœ¨æœ€åå†™å…¥
 		index.analysis.analyzer.ik.type: "ik"
-		ÖØÆôelasticsearch·şÎñ
+		é‡å¯elasticsearchæœåŠ¡
 		[elsearch@localhost bin]$ ./elasticsearch
 			[2018-01-27T00:42:52,981][WARN ][o.e.b.ElasticsearchUncaughtExceptionHandler] [] uncaught exception in thread [main]
 			org.elasticsearch.bootstrap.StartupException: java.lang.IllegalArgumentException: plugin [analysis-ik] is incompatible with version [6.1.2]; was designed for version [6.1.1]
@@ -273,32 +273,52 @@
 				at org.elasticsearch.bootstrap.Elasticsearch.init(Elasticsearch.java:121) ~[elasticsearch-6.1.2.jar:6.1.2]
 				... 6 more
 			
-		±¨ÈçÏÂµÄ´íÎó¡£
-		×îĞÂ°æ±¾µÄes ÊÇ6.1.2µÄ¶øÎÒÓÃµÄ·Ö´Ê²å¼şÊÇ6.1.1µÄËùÒÔÊÇÃ»·¨ÓÃµÄ¡£
-		·Ö´ÊµÈ6.1.2µÄ·Ö´Ê³öÀ´ÔÙ¼ÌĞø
+		æŠ¥å¦‚ä¸‹çš„é”™è¯¯ã€‚
+		æœ€æ–°ç‰ˆæœ¬çš„es æ˜¯6.1.2çš„è€Œæˆ‘ç”¨çš„åˆ†è¯æ’ä»¶æ˜¯6.1.1çš„æ‰€ä»¥æ˜¯æ²¡æ³•ç”¨çš„ã€‚
+		åˆ†è¯ç­‰6.1.2çš„åˆ†è¯å‡ºæ¥å†ç»§ç»­
 		
 		
+		æ¢ä¸€ç§æ–¹å¼å®‰è£…
+		https://github.com/medcl/elasticsearch-analysis-ik/releases ä¸€å®šè¦ä»¥è¿™å„¿çš„ä¸ºå‡†
+		
+		cd /usr/local/elasticsearch-6.1.2
+		
+		./bin/elasticsearch-plugin install https://github.com/medcl/elasticsearch-analysis-ik/releases/download/v6.1.2/elasticsearch-analysis-ik-6.1.2.zip
+		
+		[elsearch@localhost elasticsearch-6.1.2]$ ./bin/elasticsearch-plugin install https://github.com/medcl/elasticsearch-analysis-ik/releases/download/v6.1.2/elasticsearch-analysis-ik-6.1.2.zip
+		-> Downloading https://github.com/medcl/elasticsearch-analysis-ik/releases/download/v6.1.2/elasticsearch-analysis-ik-6.1.2.zip
+		[=================================================] 100%Â Â  
+		-> Installed analysis-ik
+		ä»¥ä¸Šè¡¨ç¤ºå®‰è£…æˆåŠŸ
+		
+		å¹¶ä¸”åœ¨confä¼šå¤šå‡ºæ¥ä¸€ä¸ªanalysis-ikç›®å½•
+		[elsearch@localhost config]$ pwd
+		/usr/local/elasticsearch-6.1.2/config
+		[elsearch@localhost config]$ ls
+		analysis-ik  elasticsearch.yml  jvm.options  log4j2.properties
+		[elsearch@localhost config]$
 		
 		
+		./bin/elasticsearch-plugin installå®‰è£…æˆåŠŸçš„è¯ä¸‹é¢çš„é…ç½®éœ€å¹²æ‰
+		index.analysis.analyzer.ik.type: "ik"
 		
 		
-		
-7£ºlogstash
-	Ê¹ÓÃmysql×÷ÎªÊı¾İµÄ´æ´¢¡£ÓÃelasticsearch×öËÑË÷¡£¾ÍĞèÒª½«Êı¾İÍ¬²½µ½elasticsearchÖĞ
-	A:	¹ÙÍøÏÂÔØ×îĞÂµÄ
+7ï¼šlogstash
+	ä½¿ç”¨mysqlä½œä¸ºæ•°æ®çš„å­˜å‚¨ã€‚ç”¨elasticsearchåšæœç´¢ã€‚å°±éœ€è¦å°†æ•°æ®åŒæ­¥åˆ°elasticsearchä¸­
+	A:	å®˜ç½‘ä¸‹è½½æœ€æ–°çš„
 		wget https://artifacts.elastic.co/downloads/logstash/logstash-6.1.2.tar.gz
 		cp logstash-6.1.2.tar.gz /usr/local/
 		tar -zxvf logstash-6.1.2.tar.gz
 		cd logstash-6.1.2/bin
-		Ö´ĞĞÒÔÏÂÃüÁî
+		æ‰§è¡Œä»¥ä¸‹å‘½ä»¤
 		./logstash -e 'input { stdin { } } output { stdout {} }'
-		ÊäÈëhelloword
-		¿ØÖÆÌ¨»áÊä³öÒÔÏÂÄÚÈİ¼´Îªok
+		è¾“å…¥helloword
+		æ§åˆ¶å°ä¼šè¾“å‡ºä»¥ä¸‹å†…å®¹å³ä¸ºok
 		2018-01-25T13:24:02.112Z localhost.localdomain hellword
 		
-		»òÕßÖ´ĞĞÒÔÏÂÃüÁî
+		æˆ–è€…æ‰§è¡Œä»¥ä¸‹å‘½ä»¤
 		./logstash -e ""
-		¿ØÖÆÌ¨ÏÔÊ¾
+		æ§åˆ¶å°æ˜¾ç¤º
 		The stdin plugin is now waiting for input:
 		[2018-01-25T21:28:46,683][INFO ][logstash.agent           ] Pipelines running {:count=>1, :pipelines=>["main"]}
 		{
@@ -308,61 +328,61 @@
 		       "message" => "helloword",
 		          "host" => "localhost.localdomain"
 		}
-		¼´Îªok
+		å³ä¸ºok
 		
 		
-8£º °²×°logstash-input-jdbc²å¼ş
-	¸½ÉÏ¹ÙÍøÎÄµµ https://www.elastic.co/guide/en/logstash/current/plugins-inputs-jdbc.html
-	logstash-input-jdbc²å¼şÊÇlogstash µÄÒ»¸ö²å¼ş¡£
-	A:	Ê×ÏÈ²é¿´ÊÇ·ñ°²×°gem¡£ Èç¹ûÃ»ÓĞ°²×° gem µÄ»° °²×°gem 
+8ï¼š å®‰è£…logstash-input-jdbcæ’ä»¶
+	é™„ä¸Šå®˜ç½‘æ–‡æ¡£ https://www.elastic.co/guide/en/logstash/current/plugins-inputs-jdbc.html
+	logstash-input-jdbcæ’ä»¶æ˜¯logstash çš„ä¸€ä¸ªæ’ä»¶ã€‚
+	A:	é¦–å…ˆæŸ¥çœ‹æ˜¯å¦å®‰è£…gemã€‚ å¦‚æœæ²¡æœ‰å®‰è£… gem çš„è¯ å®‰è£…gem 
 		yum install gem
-		°²×°Íê
+		å®‰è£…å®Œ
 		gem -v
-		²é¿´°æ±¾ºÅ
+		æŸ¥çœ‹ç‰ˆæœ¬å·
 	B:	cd /usr/local/logstash-6.1.2/bin
-		Í¨¹ı×Ô´øµÄÃüÁî°²×°£¨½ÏÂı£©
+		é€šè¿‡è‡ªå¸¦çš„å‘½ä»¤å®‰è£…ï¼ˆè¾ƒæ…¢ï¼‰
 		./logstash-plugin install logstash-input-jdbc
 		
 		Validating logstash-input-jdbc
 		Installing logstash-input-jdbc
 		Installation successful
 		
-		°²×°Íê³É
+		å®‰è£…å®Œæˆ
 		
 		wget https://dev.mysql.com/get/Downloads/Connector-J/mysql-connector-java-5.1.45.tar.gz		
 		cp mysql-connector-java-5.1.45.tar.gz	/usr/local/logstash-6.1.2
-		´´½¨Á½¸öÅäÖÃÎÄ¼ş
+		åˆ›å»ºä¸¤ä¸ªé…ç½®æ–‡ä»¶
 		//@Todo
 		
 		cd /usr/local/logstash-6.1.2
 		mdkir etc
 		cd etc
 		touch index.conf index.sql
-		vi index.conf£¨Ë÷ÒıÅäÖÃÎÄ¼ş£©
+		vi index.confï¼ˆç´¢å¼•é…ç½®æ–‡ä»¶ï¼‰
 		
 		input {
 		    stdin {
 		    }
 		    jdbc {
-		      # mysql Êı¾İ¿âÁ´½Ó,testÎªÊı¾İ¿âÃû
+		      # mysql æ•°æ®åº“é“¾æ¥,testä¸ºæ•°æ®åº“å
 		      jdbc_connection_string => "jdbc:mysql://192.168.132.131:3306/test?useSSL=false&useUnicode=true&characterEncoding=UTF-8"
-		      # ÓÃ»§ÃûºÍÃÜÂë
+		      # ç”¨æˆ·åå’Œå¯†ç 
 		      jdbc_user => "root"
 		      jdbc_password => "*******"
-		      # Çı¶¯
+		      # é©±åŠ¨
 		      jdbc_driver_library => "/usr/local/logstash-6.1.2/mysql-connector-java-5.1.45-bin.jar"
-		      # Çı¶¯ÀàÃû
+		      # é©±åŠ¨ç±»å
 		      jdbc_driver_class => "com.mysql.jdbc.Driver"
 		      jdbc_paging_enabled => "true"
-		      # ·ÖÒ³Êı
+		      # åˆ†é¡µæ•°
 		      jdbc_page_size => "50000"
-		      # Ö´ĞĞµÄsql ÎÄ¼şÂ·¾¶+Ãû³Æ Ò²¿ÉÖ±½ÓÓÃsql
+		      # æ‰§è¡Œçš„sql æ–‡ä»¶è·¯å¾„+åç§° ä¹Ÿå¯ç›´æ¥ç”¨sql
 		      #statement_filepath => "/usr/local/logstash-6.1.2/etc/index.sql"
-		      # ¿ÉÓÃsql
+		      # å¯ç”¨sql
 		      statement => "select * from user"
-		      #  ÉèÖÃ¼àÌı¼ä¸ô  ¸÷×Ö¶Îº¬Òå£¨ÓÉ×óÖÁÓÒ£©·Ö¡¢Ê±¡¢Ìì¡¢ÔÂ¡¢Äê£¬È«²¿Îª*Ä¬ÈÏº¬ÒåÎªÃ¿·ÖÖÓ¶¼¸üĞÂ
+		      #  è®¾ç½®ç›‘å¬é—´éš”  å„å­—æ®µå«ä¹‰ï¼ˆç”±å·¦è‡³å³ï¼‰åˆ†ã€æ—¶ã€å¤©ã€æœˆã€å¹´ï¼Œå…¨éƒ¨ä¸º*é»˜è®¤å«ä¹‰ä¸ºæ¯åˆ†é’Ÿéƒ½æ›´æ–°
 		      schedule => "* * * * *"
-		      # Ë÷ÒıÀàĞÍ Ò»°ãÒÔÊı¾İ¿âÖĞµÄ±íÃüÃû
+		      # ç´¢å¼•ç±»å‹ ä¸€èˆ¬ä»¥æ•°æ®åº“ä¸­çš„è¡¨å‘½å
 		      type => "user"
 		    }
 		}
@@ -378,64 +398,64 @@
 		output {
 			 elasticsearch {
 		        	hosts => ["192.168.132.131:9200"]
-		        	#user => "elastic"   //Èç¹ûÕâÀïÊ¹ÓÃx-pack×÷Îª°²È«¹ÜÀí£¬ÒªÅäÖÃuserºÍpassword£»
+		        	#user => "elastic"   //å¦‚æœè¿™é‡Œä½¿ç”¨x-packä½œä¸ºå®‰å…¨ç®¡ç†ï¼Œè¦é…ç½®userå’Œpasswordï¼›
         			#password => "changeme"
-		        	# Ë÷Òı
+		        	# ç´¢å¼•
 		        	index => "test"
-					#Ö¸¶¨Ë÷ÒıÀàĞÍ
+					#æŒ‡å®šç´¢å¼•ç±»å‹
 		        	document_type => "user"
-		        	# ×ÔÔöID ĞèÒª¹ØÁªµÄÊı¾İ¿âÖĞÓĞÓĞÒ»¸öid×Ö¶Î£¬¶ÔÓ¦Ë÷ÒıµÄidºÅ
+		        	# è‡ªå¢ID éœ€è¦å…³è”çš„æ•°æ®åº“ä¸­æœ‰æœ‰ä¸€ä¸ªidå­—æ®µï¼Œå¯¹åº”ç´¢å¼•çš„idå·
 		        	document_id => "%{id}"
 		        	
-                    #ÒÔÏÂÊÇ´´½¨Ä£°åÔİÊ±²»ĞèÒª
-                    #manage_template => true #×¢ÒâÄ¬ÈÏÎªtrue,Ò»¶¨²»ÄÜÉèÖÃÎªfalse
-                    #template_overwrite => true #Èç¹ûÉèÖÃÎªtrue£¬Ä£°åÃû×ÖÒ»ÑùµÄÊ±ºò£¬ĞÂµÄÄ£°å»á¸²¸Ç¾ÉµÄÄ£°å
-                    #template_name => "myLogstash" #×¢ÒâÕâ¸öÃû×ÖÊÇÓÃÀ´²éÕÒÓ³ÉäÅäÖÃµÄ£¬¾¡Á¿ÉèÖÃ³ÉÈ«¾ÖÎ¨Ò»µÄ
-¡¡¡¡                                 #template => "/home/apps/logstash/template/logstash.json" #Ó³ÉäÅäÖÃÎÄ¼şµÄÎ»ÖÃ£¨´Ë´¦¿ÉÄÜ»á±¨´í ºóÃæÔÙ½â¾ö£©
+                    #ä»¥ä¸‹æ˜¯åˆ›å»ºæ¨¡æ¿æš‚æ—¶ä¸éœ€è¦
+                    #manage_template => true #æ³¨æ„é»˜è®¤ä¸ºtrue,ä¸€å®šä¸èƒ½è®¾ç½®ä¸ºfalse
+                    #template_overwrite => true #å¦‚æœè®¾ç½®ä¸ºtrueï¼Œæ¨¡æ¿åå­—ä¸€æ ·çš„æ—¶å€™ï¼Œæ–°çš„æ¨¡æ¿ä¼šè¦†ç›–æ—§çš„æ¨¡æ¿
+                    #template_name => "myLogstash" #æ³¨æ„è¿™ä¸ªåå­—æ˜¯ç”¨æ¥æŸ¥æ‰¾æ˜ å°„é…ç½®çš„ï¼Œå°½é‡è®¾ç½®æˆå…¨å±€å”¯ä¸€çš„
+ã€€ã€€                                 #template => "/home/apps/logstash/template/logstash.json" #æ˜ å°„é…ç½®æ–‡ä»¶çš„ä½ç½®ï¼ˆæ­¤å¤„å¯èƒ½ä¼šæŠ¥é”™ åé¢å†è§£å†³ï¼‰
 		   	   }
 		
 			 stdout {
-				#ÒÔJSON¸ñÊ½Êä³ö
+				#ä»¥JSONæ ¼å¼è¾“å‡º
 		  		codec => json_lines
 			}
 		}
 		
 		:wq
-		±£´æºó
+		ä¿å­˜å
 		
 		cd /usr/local/logstash-6.1.2
-		./bin/logstash -f ./etc/index.conf£¨Ö¸¶¨ÅäÖÃÎÄ¼şÆô¶¯£©
-		Æô¶¯ĞèÒªµãÊ±¼ä
+		./bin/logstash -f ./etc/index.confï¼ˆæŒ‡å®šé…ç½®æ–‡ä»¶å¯åŠ¨ï¼‰
+		å¯åŠ¨éœ€è¦ç‚¹æ—¶é—´
 		[2018-01-27T16:16:05,389][INFO ][logstash.pipeline        ] Pipeline started {"pipeline.id"=>"main"}
 		The stdin plugin is now waiting for input:
 		[2018-01-27T16:16:05,843][INFO ][logstash.agent           ] Pipelines running {:count=>1, :pipelines=>["main"]}
-		 ³öÏÖÒÔÉÏĞÅÏ¢ÒâÎ¶×Ålogstash Æô¶¯³É¹¦
-		´ËÊ±Íùuser±íÖĞ²åÈëÒ»ÌõÊı¾İ
-		INSERT INTO user (`name`,`age`) value ('ÕÅÈı', 45);
-		¹ı¼¸Ãë
-		esÖĞÒ²±ãÓĞÁËÕâÌõÊı¾İ
+		 å‡ºç°ä»¥ä¸Šä¿¡æ¯æ„å‘³ç€logstash å¯åŠ¨æˆåŠŸ
+		æ­¤æ—¶å¾€userè¡¨ä¸­æ’å…¥ä¸€æ¡æ•°æ®
+		INSERT INTO user (`name`,`age`) value ('å¼ ä¸‰', 45);
+		è¿‡å‡ ç§’
+		esä¸­ä¹Ÿä¾¿æœ‰äº†è¿™æ¡æ•°æ®
 		
-		²âÊÔsql 
-		INSERT INTO user (`name`,`age`,`update_time`) value ('ÕÅÈı', 45, unix_timestamp());
+		æµ‹è¯•sql 
+		INSERT INTO user (`name`,`age`,`update_time`) value ('å¼ ä¸‰', 45, unix_timestamp());
 		
-		×¢Òâ
-		µ±²åÈëµÚÒ»ÌõÊı¾İÊ±
-		logstash¿ØÖÆÌ¨Êä³öÒ»ÌõÊı¾İ
-		{"@version":"1","@timestamp":"2018-01-27T08:20:00.402Z","name":"ÕÅÈı","id":32,"type":"user","age":45}
-		µ±²åÈëµÚ¶şÌõÊı¾İÊ±
-		logstash¿ØÖÆÌ¨Êä³öÁ½ÌõÊı¾İ
-		{"@version":"1","@timestamp":"2018-01-27T08:21:00.323Z","name":"ÕÅÈı","id":32,"type":"user","age":45}
-		{"@version":"1","@timestamp":"2018-01-27T08:21:00.323Z","name":"ÕÅÈı","id":33,"type":"user","age":45}	
-		Ò²¾ÍÊÇÒ»Î¶×ÅÎÒÃÇÉÏÃæÅäÖÃµÄÊÇÈ«Á¿µÄÍ¬²½¶ø·ÇÔöÁ¿µÄ¡£
-		ÒÔÉÏÊÇÈ«²¿µÄÊı¾İÊÇ·ÇÔöÁ¿Ìí¼ÓµÄ¡£
-		ÒâÎ¶ Ã¿´Î¶¨Ê±ÅÜµÄÊ±ºò»áÈ¨±êÉ¨ÃèÒ»´Î È»ºó ¸üĞÂµ½esÖĞ
-		£¨×¢Òâ Æô¶¯Í¬²½Ê± ²»»áÁ¢¿ÌÈ¥×öÒ»´ÎÊı¾İµÄÍ¬²½£©
+		æ³¨æ„
+		å½“æ’å…¥ç¬¬ä¸€æ¡æ•°æ®æ—¶
+		logstashæ§åˆ¶å°è¾“å‡ºä¸€æ¡æ•°æ®
+		{"@version":"1","@timestamp":"2018-01-27T08:20:00.402Z","name":"å¼ ä¸‰","id":32,"type":"user","age":45}
+		å½“æ’å…¥ç¬¬äºŒæ¡æ•°æ®æ—¶
+		logstashæ§åˆ¶å°è¾“å‡ºä¸¤æ¡æ•°æ®
+		{"@version":"1","@timestamp":"2018-01-27T08:21:00.323Z","name":"å¼ ä¸‰","id":32,"type":"user","age":45}
+		{"@version":"1","@timestamp":"2018-01-27T08:21:00.323Z","name":"å¼ ä¸‰","id":33,"type":"user","age":45}	
+		ä¹Ÿå°±æ˜¯ä¸€å‘³ç€æˆ‘ä»¬ä¸Šé¢é…ç½®çš„æ˜¯å…¨é‡çš„åŒæ­¥è€Œéå¢é‡çš„ã€‚
+		ä»¥ä¸Šæ˜¯å…¨éƒ¨çš„æ•°æ®æ˜¯éå¢é‡æ·»åŠ çš„ã€‚
+		æ„å‘³ æ¯æ¬¡å®šæ—¶è·‘çš„æ—¶å€™ä¼šæƒæ ‡æ‰«æä¸€æ¬¡ ç„¶å æ›´æ–°åˆ°esä¸­
+		ï¼ˆæ³¨æ„ å¯åŠ¨åŒæ­¥æ—¶ ä¸ä¼šç«‹åˆ»å»åšä¸€æ¬¡æ•°æ®çš„åŒæ­¥ï¼‰
 		
-		È«Á¿Ë÷ÒıµÄÓÃ´¦ÊÇµ±ÄãµÄ±íÖĞÒÑ¾­ÓĞnÌõÊı¾İµÄÊ±ºò µÚÒ»Í¬²½µÄÊ±ºò¿ÉÒÔÊ¹ÓÃÈ«Á¿£¨×¢ÒâÔ¤Áô×ã¹»µÄ´´½¨Ë÷ÒıËùĞèµÄÊ±¼ä ºÍ ´ÅÅÌ¿Õ¼ä£©
+		å…¨é‡ç´¢å¼•çš„ç”¨å¤„æ˜¯å½“ä½ çš„è¡¨ä¸­å·²ç»æœ‰næ¡æ•°æ®çš„æ—¶å€™ ç¬¬ä¸€åŒæ­¥çš„æ—¶å€™å¯ä»¥ä½¿ç”¨å…¨é‡ï¼ˆæ³¨æ„é¢„ç•™è¶³å¤Ÿçš„åˆ›å»ºç´¢å¼•æ‰€éœ€çš„æ—¶é—´ å’Œ ç£ç›˜ç©ºé—´ï¼‰
 	
 	C:
-		ÒÔÏÂÎÒÃÇ½«ÅäÖÃÔöÁ¿Ìí¼ÓµÄ
-		Ê×ÏÈ »ñÈ¡ÏÂÏµÍ³Ê±¼ä´Á
+		ä»¥ä¸‹æˆ‘ä»¬å°†é…ç½®å¢é‡æ·»åŠ çš„
+		é¦–å…ˆ è·å–ä¸‹ç³»ç»Ÿæ—¶é—´æˆ³
 		date +%s
 		cd /usr/local/logstash-6.1.2/etc
 		vi index.sql
@@ -448,16 +468,16 @@
 		    user
 		WHERE
 		    update_time >= :sql_last_value
-		£¨sql_last_value²»ÊÇsql µÄĞ´·¨£©
+		ï¼ˆsql_last_valueä¸æ˜¯sql çš„å†™æ³•ï¼‰
 				
-		ĞŞ¸Äindex.conf
+		ä¿®æ”¹index.conf
 		
-		# Ö´ĞĞµÄsql ÎÄ¼şÂ·¾¶+Ãû³Æ Ò²¿ÉÖ±½ÓÓÃsql
+		# æ‰§è¡Œçš„sql æ–‡ä»¶è·¯å¾„+åç§° ä¹Ÿå¯ç›´æ¥ç”¨sql
         statement_filepath => "/usr/local/logstash-6.1.2/etc/index.sql"
-        # ¿ÉÓÃsql
+        # å¯ç”¨sql
         #statement => "select * from user"
         
-       	ÔÙ´ÎÆô¶¯ logstash
+       	å†æ¬¡å¯åŠ¨ logstash
        	SELECT
 		    id,
 		    name,
@@ -467,9 +487,9 @@
 		    user
 		WHERE
 		    update_time >= '2018-01-27 09:15:00'
-		Ö´ĞĞ¼Æ»®ÖĞµÄsql Óï¾äÊÇÈçÉÏµÄ¡£ÉÙ¸ö8¸öĞ¡Ê±        
+		æ‰§è¡Œè®¡åˆ’ä¸­çš„sql è¯­å¥æ˜¯å¦‚ä¸Šçš„ã€‚å°‘ä¸ª8ä¸ªå°æ—¶        
         
-                ĞÂµÄsqlÖ´ĞĞÓï¾ä
+                æ–°çš„sqlæ‰§è¡Œè¯­å¥
         SELECT
 		    id,
 		    name,
@@ -481,64 +501,64 @@
 		    update_time >= DATE_ADD(:sql_last_value,INTERVAL 8 HOUR)
 		    
         
-                ¼´¿É
+                å³å¯
          
-                ÔÙ´ÎÆô¶¯logstash       
-        ·¢ÏÖÒÀÈ» ²é²»µ½Êı¾İ
-        Ô­À´sql Ğ´´íÁË¸Ä³ÉÈçÏÂ
+                å†æ¬¡å¯åŠ¨logstash       
+        å‘ç°ä¾ç„¶ æŸ¥ä¸åˆ°æ•°æ®
+        åŸæ¥sql å†™é”™äº†æ”¹æˆå¦‚ä¸‹
         SELECT id,name,age,update_time FROM user WHERE update_time >= UNIX_TIMESTAMP(date_add(:sql_last_value,interval 8 hour))
-	¾­¹ıÕâÑù·¢ÏÖÖ»ÓĞĞÂÔöµÄÊı¾İ²Å»á ±»¸üĞÂ¡££¨ĞèÒª¸üĞÂupdate_time£©µÄÊ±¼ä
+	ç»è¿‡è¿™æ ·å‘ç°åªæœ‰æ–°å¢çš„æ•°æ®æ‰ä¼š è¢«æ›´æ–°ã€‚ï¼ˆéœ€è¦æ›´æ–°update_timeï¼‰çš„æ—¶é—´
 	
-	Ä¿Ç°ÎÒÃÇÒÑ¾­ÊµÏÖÔöÁ¿¸üĞÂÁË¡£
-	£¨Õë¶ÔÉ¾³ı²Ù×÷ ÉÔºó×ö´¦Àí£©		
+	ç›®å‰æˆ‘ä»¬å·²ç»å®ç°å¢é‡æ›´æ–°äº†ã€‚
+	ï¼ˆé’ˆå¯¹åˆ é™¤æ“ä½œ ç¨ååšå¤„ç†ï¼‰		
 			
 			
 			
 			
 			
-	D:	ÅäÖÃ¶àÄ£°åÖ§³Ö
+	D:	é…ç½®å¤šæ¨¡æ¿æ”¯æŒ
 		input {
 			    stdin {
 			    }
 			    jdbc {
-			      # mysql Êı¾İ¿âÁ´½Ó,testÎªÊı¾İ¿âÃû
+			      # mysql æ•°æ®åº“é“¾æ¥,testä¸ºæ•°æ®åº“å
 			      jdbc_connection_string => "jdbc:mysql://192.168.132.131:3306/test?useSSL=false&useUnicode=true&characterEncoding=UTF-8"
-			      # ÓÃ»§ÃûºÍÃÜÂë
+			      # ç”¨æˆ·åå’Œå¯†ç 
 			      jdbc_user => "root"
 			      jdbc_password => "nihao123"
-			      # Çı¶¯
+			      # é©±åŠ¨
 			      jdbc_driver_library => "/usr/local/logstash-6.1.2/mysql-connector-java-5.1.45-bin.jar"
-			      # Çı¶¯ÀàÃû
+			      # é©±åŠ¨ç±»å
 			      jdbc_driver_class => "com.mysql.jdbc.Driver"
 			      jdbc_paging_enabled => "true"
-			      # ·ÖÒ³Êı
+			      # åˆ†é¡µæ•°
 			      jdbc_page_size => "50000"
-			      # Ö´ĞĞµÄsql ÎÄ¼şÂ·¾¶+Ãû³Æ Ò²¿ÉÖ±½ÓÓÃsql
+			      # æ‰§è¡Œçš„sql æ–‡ä»¶è·¯å¾„+åç§° ä¹Ÿå¯ç›´æ¥ç”¨sql
 			      statement_filepath => "/usr/local/logstash-6.1.2/etc/index.sql"
-			      # ¿ÉÓÃsql
+			      # å¯ç”¨sql
 			      #statement => "select * from user"
-			      #  ÉèÖÃ¼àÌı¼ä¸ô  ¸÷×Ö¶Îº¬Òå£¨ÓÉ×óÖÁÓÒ£©·Ö¡¢Ê±¡¢Ìì¡¢ÔÂ¡¢Äê£¬È«²¿Îª*Ä¬ÈÏº¬ÒåÎªÃ¿·ÖÖÓ¶¼¸üĞÂ
+			      #  è®¾ç½®ç›‘å¬é—´éš”  å„å­—æ®µå«ä¹‰ï¼ˆç”±å·¦è‡³å³ï¼‰åˆ†ã€æ—¶ã€å¤©ã€æœˆã€å¹´ï¼Œå…¨éƒ¨ä¸º*é»˜è®¤å«ä¹‰ä¸ºæ¯åˆ†é’Ÿéƒ½æ›´æ–°
 			      schedule => "* * * * *"
 			      type => "user"
 			    }
 	                    jdbc {
-	                      # mysql Êı¾İ¿âÁ´½Ó,testÎªÊı¾İ¿âÃû
+	                      # mysql æ•°æ®åº“é“¾æ¥,testä¸ºæ•°æ®åº“å
 	                      jdbc_connection_string => "jdbc:mysql://192.168.132.131:3306/test?useSSL=false&useUnicode=true&characterEncoding=UTF-8"
-	                      # ÓÃ»§ÃûºÍÃÜÂë
+	                      # ç”¨æˆ·åå’Œå¯†ç 
 	                      jdbc_user => "root"
 	                      jdbc_password => "nihao123"
-	                      # Çı¶¯
+	                      # é©±åŠ¨
 	                      jdbc_driver_library => "/usr/local/logstash-6.1.2/mysql-connector-java-5.1.45-bin.jar"
-	                      # Çı¶¯ÀàÃû
+	                      # é©±åŠ¨ç±»å
 	                      jdbc_driver_class => "com.mysql.jdbc.Driver"
 	                      jdbc_paging_enabled => "true"
-	                      # ·ÖÒ³Êı
+	                      # åˆ†é¡µæ•°
 	                      jdbc_page_size => "50000"
-	                      # Ö´ĞĞµÄsql ÎÄ¼şÂ·¾¶+Ãû³Æ Ò²¿ÉÖ±½ÓÓÃsql
+	                      # æ‰§è¡Œçš„sql æ–‡ä»¶è·¯å¾„+åç§° ä¹Ÿå¯ç›´æ¥ç”¨sql
 	                      statement_filepath => "/usr/local/logstash-6.1.2/etc/news.sql"
-	                      # ¿ÉÓÃsql
+	                      # å¯ç”¨sql
 	                      #statement => "select * from user"
-	                      #  ÉèÖÃ¼àÌı¼ä¸ô  ¸÷×Ö¶Îº¬Òå£¨ÓÉ×óÖÁÓÒ£©·Ö¡¢Ê±¡¢Ìì¡¢ÔÂ¡¢Äê£¬È«²¿Îª*Ä¬ÈÏº¬ÒåÎªÃ¿·ÖÖÓ¶¼¸üĞÂ
+	                      #  è®¾ç½®ç›‘å¬é—´éš”  å„å­—æ®µå«ä¹‰ï¼ˆç”±å·¦è‡³å³ï¼‰åˆ†ã€æ—¶ã€å¤©ã€æœˆã€å¹´ï¼Œå…¨éƒ¨ä¸º*é»˜è®¤å«ä¹‰ä¸ºæ¯åˆ†é’Ÿéƒ½æ›´æ–°
 	                      schedule => "* * * * *"
 	                      type => "news"
 	                    }
@@ -558,67 +578,67 @@
 				if [type] == "user"{
 					 elasticsearch {
 			        		hosts => ["192.168.132.131:9200"]
-						#Ö¸¶¨Ë÷Òı
+						#æŒ‡å®šç´¢å¼•
 			        		index => "test"
-						#Ö¸¶¨Ë÷ÒıÀàĞÍ
+						#æŒ‡å®šç´¢å¼•ç±»å‹
 						document_type => "user"
 			        		document_id => "%{id}"
-						#ÒÔÏÂÊÇ´´½¨Ä£°åÔİÊ±²»ĞèÒª
-						#manage_template => true #×¢ÒâÄ¬ÈÏÎªtrue,Ò»¶¨²»ÄÜÉèÖÃÎªfalse
-	        				#template_overwrite => true #Èç¹ûÉèÖÃÎªtrue£¬Ä£°åÃû×ÖÒ»ÑùµÄÊ±ºò£¬ĞÂµÄÄ£°å»á¸²¸Ç¾ÉµÄÄ£°å
-	        				#template_name => "myLogstash" #×¢ÒâÕâ¸öÃû×ÖÊÇÓÃÀ´²éÕÒÓ³ÉäÅäÖÃµÄ£¬¾¡Á¿ÉèÖÃ³ÉÈ«¾ÖÎ¨Ò»µÄ
+						#ä»¥ä¸‹æ˜¯åˆ›å»ºæ¨¡æ¿æš‚æ—¶ä¸éœ€è¦
+						#manage_template => true #æ³¨æ„é»˜è®¤ä¸ºtrue,ä¸€å®šä¸èƒ½è®¾ç½®ä¸ºfalse
+	        				#template_overwrite => true #å¦‚æœè®¾ç½®ä¸ºtrueï¼Œæ¨¡æ¿åå­—ä¸€æ ·çš„æ—¶å€™ï¼Œæ–°çš„æ¨¡æ¿ä¼šè¦†ç›–æ—§çš„æ¨¡æ¿
+	        				#template_name => "myLogstash" #æ³¨æ„è¿™ä¸ªåå­—æ˜¯ç”¨æ¥æŸ¥æ‰¾æ˜ å°„é…ç½®çš„ï¼Œå°½é‡è®¾ç½®æˆå…¨å±€å”¯ä¸€çš„
 			   	   	}
 				}
 	
 				if [type] == "news"{
 					elasticsearch {
 	                	                hosts => ["192.168.132.131:9200"]
-	                        	        #Ö¸¶¨Ë÷Òı
+	                        	        #æŒ‡å®šç´¢å¼•
 	                                	index => "news"
-	        	                        #Ö¸¶¨Ë÷ÒıÀàĞÍ
+	        	                        #æŒ‡å®šç´¢å¼•ç±»å‹
 	                	                document_type => "news"
 	                        	        document_id => "%{id}"
-	                                	#ÒÔÏÂÊÇ´´½¨Ä£°åÔİÊ±²»ĞèÒª
-	       		                        #manage_template => true #×¢ÒâÄ¬ÈÏÎªtrue,Ò»¶¨²»ÄÜÉèÖÃÎªfalse
-	                        	        #template_overwrite => true #Èç¹ûÉèÖÃÎªtrue£¬Ä£°åÃû×ÖÒ»ÑùµÄÊ±ºò£¬ĞÂµÄÄ£°å»á¸²¸Ç¾ÉµÄÄ£°å
-	                                	#template_name => "myLogstash" #×¢ÒâÕâ¸öÃû×ÖÊÇÓÃÀ´²éÕÒÓ³ÉäÅäÖÃµÄ£¬¾¡Á¿ÉèÖÃ³ÉÈ«¾ÖÎ¨Ò»µÄ
+	                                	#ä»¥ä¸‹æ˜¯åˆ›å»ºæ¨¡æ¿æš‚æ—¶ä¸éœ€è¦
+	       		                        #manage_template => true #æ³¨æ„é»˜è®¤ä¸ºtrue,ä¸€å®šä¸èƒ½è®¾ç½®ä¸ºfalse
+	                        	        #template_overwrite => true #å¦‚æœè®¾ç½®ä¸ºtrueï¼Œæ¨¡æ¿åå­—ä¸€æ ·çš„æ—¶å€™ï¼Œæ–°çš„æ¨¡æ¿ä¼šè¦†ç›–æ—§çš„æ¨¡æ¿
+	                                	#template_name => "myLogstash" #æ³¨æ„è¿™ä¸ªåå­—æ˜¯ç”¨æ¥æŸ¥æ‰¾æ˜ å°„é…ç½®çš„ï¼Œå°½é‡è®¾ç½®æˆå…¨å±€å”¯ä¸€çš„
 	                           	}
 				}
 				 stdout {
-					#ÒÔJSON¸ñÊ½Êä³ö
+					#ä»¥JSONæ ¼å¼è¾“å‡º
 			  		codec => json_lines
 				}
 			}
-			ÅäÖÃ¶à¸öjdbcÖ¸¶¨²»Í¬µÄtype¼´¿É¡£¾ßÌå¼ûÉÏÃæµÄÅäÖÃ
+			é…ç½®å¤šä¸ªjdbcæŒ‡å®šä¸åŒçš„typeå³å¯ã€‚å…·ä½“è§ä¸Šé¢çš„é…ç½®
 	
 			
 			
 			
 			
-9£º	elasticsearch-php ²å¼şÖ§³Ö
+9ï¼š	elasticsearch-php æ’ä»¶æ”¯æŒ
 	
-	A:	°²×°elasticsearch-php
-		¸Ã²å¼ş×÷Õß½¨Òécomposer°²×°
-		°²×°composer
-		½¨Òé cd µ½ /usr/local/php ÎÒÕâÀïÃ»ÓĞ
+	A:	å®‰è£…elasticsearch-php
+		è¯¥æ’ä»¶ä½œè€…å»ºè®®composerå®‰è£…
+		å®‰è£…composer
+		å»ºè®® cd åˆ° /usr/local/php æˆ‘è¿™é‡Œæ²¡æœ‰
 		
 		curl -s http://getcomposer.org/installer | php
-	B:	ÔÚÏîÄ¿ÖĞ´©¼ş	composer.jsonÎÄ¼ş
+	B:	åœ¨é¡¹ç›®ä¸­ç©¿ä»¶	composer.jsonæ–‡ä»¶
 		vi composer.json
-		Ğ´ÈëÈçÏÂÊı¾İ
+		å†™å…¥å¦‚ä¸‹æ•°æ®
 		{
 	        "require": {
 	            "elasticsearch/elasticsearch": "~6.0"
 	        }
 	    }
 	    
-		cd µ½ÏîÄ¿¸ùÄ¿Â¼
-		ÒòÎªÎÒµÄÊÇËùÒÔÖ´ĞĞÏÂÃæµÄÃüÁî
+		cd åˆ°é¡¹ç›®æ ¹ç›®å½•
+		å› ä¸ºæˆ‘çš„æ˜¯æ‰€ä»¥æ‰§è¡Œä¸‹é¢çš„å‘½ä»¤
 		php /root/composer.phar install
-		Õâ¿ÉÄÜĞèÒªµãÊ±¼ä
-		°²×°Íê³Éºó
-		Ä¿Â¼ÏÂ
-		composer.lockÎÄ¼ş vendor Ä¿Â¼
+		è¿™å¯èƒ½éœ€è¦ç‚¹æ—¶é—´
+		å®‰è£…å®Œæˆå
+		ç›®å½•ä¸‹
+		composer.lockæ–‡ä»¶ vendor ç›®å½•
 		
 	
 	
