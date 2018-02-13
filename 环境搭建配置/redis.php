@@ -91,9 +91,28 @@ redis 相关
         127.0.0.1:6380[2]> get age
         (nil)
         127.0.0.1:6380[2]> 
+ 
+        setex命令（原子操作）
+                    若key不存在 创建key 并写入value的值并设定生存时间  
+                    若key存在则重写新的value的值和过期时间  
+ 
+         127.0.0.1:6380[2]> keys *
+        (empty list or set)
+        127.0.0.1:6380[2]> setex name 100 scjzhong
+        OK
+        127.0.0.1:6380[2]> get name
+        "scjzhong"
+        127.0.0.1:6380[2]> ttl name
+        (integer) 89
+        127.0.0.1:6380[2]> setex name 3600 scjzhong111
+        OK
+        127.0.0.1:6380[2]> get name
+        "scjzhong111"
+        127.0.0.1:6380[2]> ttl name
+        (integer) 3591
+        127.0.0.1:6380[2]>       
         
-        
-3：redis的持久化
+4：redis的持久化
     Redis 提供了多种不同级别的持久化方式：rdb 和 aof
          详见
     http://doc.redisfans.com/topic/persistence.html
