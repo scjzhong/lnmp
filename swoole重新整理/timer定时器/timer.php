@@ -11,4 +11,5 @@ swoole_timer_after(3000, function () {
     echo "after 3000ms.\n";
 });
 
-以上代码可实现简易定时器
+以上代码可实现简易定时器 cli 下执行 php timer.php 
+1.8以上 就不支持addtimer
