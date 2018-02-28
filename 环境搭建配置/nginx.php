@@ -1,56 +1,56 @@
-1£º°²×°nginx
-	¹ÙÍøÏÂÔØ nginx
-	½âÑ¹ cd µ½ Ô´ÂëÄ¿Â¼
+1ï¼šå®‰è£…nginx
+	å®˜ç½‘ä¸‹è½½ nginx
+	è§£å‹ cd åˆ° æºç ç›®å½•
 	
-	# ÎªÁËÖ§³Örewrite¹¦ÄÜ£¬ÎÒÃÇĞèÒª°²×°pcre
+	# ä¸ºäº†æ”¯æŒrewriteåŠŸèƒ½ï¼Œæˆ‘ä»¬éœ€è¦å®‰è£…pcre
 	yum install pcre-devel
 	
-	# ĞèÒªsslµÄÖ§³Ö£¬Èç¹û²»ĞèÒªsslÖ§³Ö£¬ÇëÌø¹ıÕâÒ»²½
+	# éœ€è¦sslçš„æ”¯æŒï¼Œå¦‚æœä¸éœ€è¦sslæ”¯æŒï¼Œè¯·è·³è¿‡è¿™ä¸€æ­¥
 	# yum install openssl*
 	
-	# gzip Àà¿â°²×°£¬°´Ğè°²×°
+	# gzip ç±»åº“å®‰è£…ï¼ŒæŒ‰éœ€å®‰è£…
 	# yum install zlib zlib-devel
 	
 	./configure --prefix=/usr/local/nginx --with-http_stub_status_module  --with-http_ssl_module --with-http_realip_module --with-http_sub_module --with-http_gzip_static_module --with-pcre
 	
-	±àÒë°²×°nginx	
+	ç¼–è¯‘å®‰è£…nginx	
 	make && make install
 	
-	ÉèÖÃÈíÁ¬½Ó£º
+	è®¾ç½®è½¯è¿æ¥ï¼š
 	ln -sf /usr/local/nginx/sbin/nginx /usr/sbin 
 	
-	¼ì²ânginx:
+	æ£€æµ‹nginx:
 	nginx -t
-	ÏÔÊ¾£º nginx: configuration file /usr/local/nginx/conf/nginx.conf test is successful
+	æ˜¾ç¤ºï¼š nginx: configuration file /usr/local/nginx/conf/nginx.conf test is successful
 
-2£ºÏà¹ØÅäÖÃ
+2ï¼šç›¸å…³é…ç½®
 
-	ÅäÖÃÎ±¾²Ì¬
-		ÔÚserverÖĞ
+	é…ç½®ä¼ªé™æ€
+		åœ¨serverä¸­
 		    location / {
-		        #ÅäÖÃÎ±¾²Ì¬
+		        #é…ç½®ä¼ªé™æ€
 		        rewrite ^(.*)\.htmlp|jsp$ /index.html;
 		        index  index.php index.html index.htm;
 		    }
 		    
 		    rewrite ^(.*)\.htmlp|jsp$ /index.html;
-		    Æ¥Åäµ½ÒÔ.htmlp »òÕß.jsp ½áÎ²µÄÎÄ¼ş×Ô¶¯¶¨Ïòµ½ /index.html
+		    åŒ¹é…åˆ°ä»¥.htmlp æˆ–è€….jsp ç»“å°¾çš„æ–‡ä»¶è‡ªåŠ¨å®šå‘åˆ° /index.html
 	
-	×Ô¶¨ÒåÈÕÖ¾¸ñÊ½	    
-	httpÖĞÅäÖÃ
+	è‡ªå®šä¹‰æ—¥å¿—æ ¼å¼	    
+	httpä¸­é…ç½®
     log_format  main  '$remote_addr - $remote_user [$time_local] "$request" '
                       '$status $body_bytes_sent "$http_referer" '
                       '"$http_user_agent" "$http_x_forwarded_for"';
 
     access_log  logs/access.log  main;
 		    
-	ÔÚserverÖĞÒ²¿ÉÒÔÅäÖÃ ÈÕÖ¾ÎÄ¼ş
+	åœ¨serverä¸­ä¹Ÿå¯ä»¥é…ç½® æ—¥å¿—æ–‡ä»¶
 	   access_log  logs/access_test.log  main;
-	   ½«¸Ãserver µÄÈÕÖ¾¼Çµ½access_test.logÖĞ ´ËÊ±Ôò²»»á½«ÈÕ¼Ç¼ÇÂ¼µ½access.logÖĞ¡£
+	   å°†è¯¥server çš„æ—¥å¿—è®°åˆ°access_test.logä¸­ æ­¤æ—¶åˆ™ä¸ä¼šå°†æ—¥è®°è®°å½•åˆ°access.logä¸­ã€‚
 	   
 	   
-3£º·´Ïò´úÀí
-    ÏÂÃæÊÇ¸öÀı×Ó
+3ï¼šåå‘ä»£ç†
+    ä¸‹é¢æ˜¯ä¸ªä¾‹å­
     upstream ali{
     	server 118.190.22.125:8080;
     }
@@ -60,7 +60,7 @@
     
         location / {
             root   /home/wwwroot/test/;
-            #Èç¹ûÊÇÓòÃûÔòĞèÒªÔÙÅäÖÃ 
+            #å¦‚æœæ˜¯åŸŸååˆ™éœ€è¦å†é…ç½® 
             #proxy_set_header Host www.baidu.com
     	    proxy_pass   http://118.190.22.125:8080;
             index  index.php index.html index.htm;
@@ -76,15 +76,15 @@
             root           /home/wwwroot/test;
             fastcgi_pass   127.0.0.1:9000;
             fastcgi_index  index.php;
-    	fastcgi_split_path_info ^(.+\.php)(.*)$;     #Ôö¼ÓÕâÒ»¾ä
-         	fastcgi_param PATH_INFO $fastcgi_path_info;    #Ôö¼ÓÕâÒ»¾ä
+    	fastcgi_split_path_info ^(.+\.php)(.*)$;     #å¢åŠ è¿™ä¸€å¥
+         	fastcgi_param PATH_INFO $fastcgi_path_info;    #å¢åŠ è¿™ä¸€å¥
             fastcgi_param  SCRIPT_FILENAME  $document_root$fastcgi_script_name;
             include        fastcgi_params;
         }
     }
         
         
-        ÕıÏò´úÀí£¨¸ºÔØ¾ùºâ£©
+        æ­£å‘ä»£ç†ï¼ˆè´Ÿè½½å‡è¡¡ï¼‰
      upstream hosts{
     	server 118.190.22.125:8080;
     	server 118.190.22.125:8080;
@@ -95,7 +95,7 @@
     
         location / {
             root   /home/wwwroot/test/;
-            #Èç¹ûÊÇÓòÃûÔòĞèÒªÔÙÅäÖÃ 
+            #å¦‚æœæ˜¯åŸŸååˆ™éœ€è¦å†é…ç½® 
             #proxy_set_header Host www.baidu.com
     	    proxy_pass   http://hosts;
             index  index.php index.html index.htm;
@@ -111,8 +111,8 @@
             root           /home/wwwroot/test;
             fastcgi_pass   127.0.0.1:9000;
             fastcgi_index  index.php;
-    	fastcgi_split_path_info ^(.+\.php)(.*)$;     #Ôö¼ÓÕâÒ»¾ä
-         	fastcgi_param PATH_INFO $fastcgi_path_info;    #Ôö¼ÓÕâÒ»¾ä
+    	fastcgi_split_path_info ^(.+\.php)(.*)$;     #å¢åŠ è¿™ä¸€å¥
+         	fastcgi_param PATH_INFO $fastcgi_path_info;    #å¢åŠ è¿™ä¸€å¥
             fastcgi_param  SCRIPT_FILENAME  $document_root$fastcgi_script_name;
             include        fastcgi_params;
         }
@@ -120,10 +120,10 @@
     
     
     
-    ·´Ïò´úÀí ¸ºÔØ¾ùºâ
+    åå‘ä»£ç† è´Ÿè½½å‡è¡¡
     
     upstream hosts{
-    	server 118.190.22.125:8080 weight=2;#weightÈ¨ÖØ
+    	server 118.190.22.125:8080 weight=2;#weightæƒé‡
     	server 118.190.22.125:8081 weight=1; 
     	server 118.190.22.125:8083 weight=1;
     }
@@ -147,8 +147,8 @@
             root           /home/wwwroot/test;
             fastcgi_pass   127.0.0.1:9000;
             fastcgi_index  index.php;
-    	    fastcgi_split_path_info ^(.+\.php)(.*)$;     #Ôö¼ÓÕâÒ»¾ä
-         	fastcgi_param PATH_INFO $fastcgi_path_info;    #Ôö¼ÓÕâÒ»¾ä
+    	    fastcgi_split_path_info ^(.+\.php)(.*)$;     #å¢åŠ è¿™ä¸€å¥
+         	fastcgi_param PATH_INFO $fastcgi_path_info;    #å¢åŠ è¿™ä¸€å¥
             fastcgi_param  SCRIPT_FILENAME  $document_root$fastcgi_script_name;
             include        fastcgi_params;
         }

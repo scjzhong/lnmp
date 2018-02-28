@@ -1,6 +1,6 @@
-1£º°²×°php 
-	¹ÙÍøÏÂÔØ¾µÏñ ½âÑ¹
-	A:	ÏÈ°²×° ÒÀÀµ
+1ï¼šå®‰è£…php 
+	å®˜ç½‘ä¸‹è½½é•œåƒ è§£å‹
+	A:	å…ˆå®‰è£… ä¾èµ–
 		yum install -y gcc gcc-c++ make cmake bison autoconf wget lrzsz
 		yum install -y libtool libtool-ltdl-devel 
 		yum install -y freetype-devel libjpeg.x86_64 libjpeg-devel libpng-devel gd-devel
@@ -13,98 +13,98 @@
 		yum install -y readline-devel
 		yum install -y wget
 	B:	
-		ÏÂÔØÒÔÏÂ¿â²¢°²×°
+		ä¸‹è½½ä»¥ä¸‹åº“å¹¶å®‰è£…
 		tar zxvf /libmcrypt-2.5.8.tar.gz \
 		&& cd /libmcrypt-2.5.8 && ./configure && make && make install && cd - / && rm -rf /libmcrypt* \
 		&& tar zxvf /mhash-0.9.9.9.tar.gz && cd mhash-0.9.9.9 && ./configure && make && make install && cd - / && rm -rf /mhash* \
 		&& tar zxvf /mcrypt-2.6.8.tar.gz && cd mcrypt-2.6.8 && LD_LIBRARY_PATH=/usr/local/lib ./configure && make && make install && cd - / && rm -rf /mcrypt*
-	C:	cd µ½ ½âÑ¹Ä¿Â¼
+	C:	cd åˆ° è§£å‹ç›®å½•
 		./configure --prefix=/usr/local/php --with-config-file-scan-dir=/usr/local/php/etc/ --enable-inline-optimization --enable-opcache --enable-session --enable-fpm --with-mysql=mysqlnd --with-mysqli=mysqlnd --with-pdo-mysql=mysqlnd --with-pdo-sqlite --with-sqlite3 --with-gettext --enable-mbregex --enable-mbstring --enable-xml --with-iconv --with-mcrypt --with-mhash --with-openssl --enable-bcmath --enable-soap --with-xmlrpc --with-libxml-dir --enable-pcntl --enable-shmop --enable-sysvmsg --enable-sysvsem --enable-sysvshm --enable-sockets --with-curl --with-curlwrappers --with-zlib --enable-zip --with-bz2 --with-gd --enable-gd-native-ttf --with-jpeg-dir --with-png-dir --with-freetype-dir --with-iconv-dir --with-readline
-	D:	make && make install  Õâ¸ö¹ı³ÌÓĞµã¶ùÂı
-	E:	ÅäÖÃÎÄ¼ş
-		ĞèÒª´Ó°²×°°üÀï¸´ÖÆphp.ini¡¢php-fpm.confµ½°²×°Ä¿Â¼£º
-		cd µ½½âÑ¹Ä¿Â¼
+	D:	make && make install  è¿™ä¸ªè¿‡ç¨‹æœ‰ç‚¹å„¿æ…¢
+	E:	é…ç½®æ–‡ä»¶
+		éœ€è¦ä»å®‰è£…åŒ…é‡Œå¤åˆ¶php.iniã€php-fpm.confåˆ°å®‰è£…ç›®å½•ï¼š
+		cd åˆ°è§£å‹ç›®å½•
 		cp ./php.ini* /usr/local/php/etc/
 		cd /usr/local/php/etc/
 		cp php.ini-production php.ini
 		cp php-fpm.conf.default  php-fpm.conf
 		cp php-fpm.d/www.conf.default php-fpm.d/www.conf
 	
-	F:  ÅäÖÃphp.ini
-		# ²»ÏÔÊ¾´íÎó£¬Ä¬ÈÏ
+	F:  é…ç½®php.ini
+		# ä¸æ˜¾ç¤ºé”™è¯¯ï¼Œé»˜è®¤
 		display_errors = Off
 		
-		# ÔÚ¹Ø±Õdisplay_errorsºó¿ªÆôPHP´íÎóÈÕÖ¾£¨Â·¾¶ÔÚphp-fpm.confÖĞÅäÖÃ£©£¬Ä¬ÈÏ
+		# åœ¨å…³é—­display_errorsåå¼€å¯PHPé”™è¯¯æ—¥å¿—ï¼ˆè·¯å¾„åœ¨php-fpm.confä¸­é…ç½®ï¼‰ï¼Œé»˜è®¤
 		log_errors = On
 		
-		# ×Ö·û¼¯£¬Ä¬ÈÏ
+		# å­—ç¬¦é›†ï¼Œé»˜è®¤
 		default_charset = "UTF-8"
 		
-		# ÎÄ¼şÉÏ´«´óĞ¡£¬Ä¬ÈÏ 
+		# æ–‡ä»¶ä¸Šä¼ å¤§å°ï¼Œé»˜è®¤ 
 		upload_max_filesize = 2M
 		
-		# ÉèÖÃPHPµÄÀ©Õ¹¿âÂ·¾¶,£¬Ä¬ÈÏ±»×¢ÊÍÁË¡£
+		# è®¾ç½®PHPçš„æ‰©å±•åº“è·¯å¾„,ï¼Œé»˜è®¤è¢«æ³¨é‡Šäº†ã€‚
 		extension_dir = "/usr/local/php7/lib/php/extensions/no-debug-non-zts-20151012/"
-		# Èç¹û²»ÉèÖÃextension_dir£¬Ò²¿ÉÒÔÖ±½ÓĞ´¾ø¶ÔÎ»ÖÃ£º
+		# å¦‚æœä¸è®¾ç½®extension_dirï¼Œä¹Ÿå¯ä»¥ç›´æ¥å†™ç»å¯¹ä½ç½®ï¼š
 		# extension=/usr/local/php/lib/php/extensions/no-debug-non-zts-20151012/redis.so
 		
 		
-		# ÉèÖÃPHPµÄÊ±Çø
+		# è®¾ç½®PHPçš„æ—¶åŒº
 		date.timezone = PRC
 		
-		# ¿ªÆôopcache£¬Ä¬ÈÏÊÇ0
+		# å¼€å¯opcacheï¼Œé»˜è®¤æ˜¯0
 		[opcache]
 		; Determines if Zend OPCache is enabled
 		opcache.enable=1
 	
-	G:	ÅäÖÃphp-fpm.conf
-			; È¥µôÀï·ÖºÅ£¬·½±ãÒÔºóÖØÆô¡£½¨ÒéĞŞ¸Ä
+	G:	é…ç½®php-fpm.conf
+			; å»æ‰é‡Œåˆ†å·ï¼Œæ–¹ä¾¿ä»¥åé‡å¯ã€‚å»ºè®®ä¿®æ”¹
 			; Default Value: none
-			; ÏÂÃæµÄÖµ×îÖÕÄ¿Â¼ÊÇ/usr/local/php/var/run/php-fpm.pid
-			; ¿ªÆôºó¿ÉÒÔÆ½»¬ÖØÆôphp-fpm
+			; ä¸‹é¢çš„å€¼æœ€ç»ˆç›®å½•æ˜¯/usr/local/php/var/run/php-fpm.pid
+			; å¼€å¯åå¯ä»¥å¹³æ»‘é‡å¯php-fpm
 			pid = run/php-fpm.pid
 			
-			; ÉèÖÃ´íÎóÈÕÖ¾µÄÂ·¾¶£¬¿ÉÒÔÄ¬ÈÏÖµ
+			; è®¾ç½®é”™è¯¯æ—¥å¿—çš„è·¯å¾„ï¼Œå¯ä»¥é»˜è®¤å€¼
 			; Note: the default prefix is /usr/local/php/var
-			; Default Value: log/php-fpm.log, ¼´/usr/local/php/var/log/php-fpm.log
+			; Default Value: log/php-fpm.log, å³/usr/local/php/var/log/php-fpm.log
 			error_log = /var/log/php-fpm/error.log
 			
-			; LogµÈ¼¶£¬¿ÉÒÔÄ¬ÈÏÖµ
+			; Logç­‰çº§ï¼Œå¯ä»¥é»˜è®¤å€¼
 			; Possible Values: alert, error, warning, notice, debug
 			; Default Value: notice
 			log_level = notice
 			
-			; ºóÌ¨ÔËĞĞ£¬Ä¬ÈÏyes£¬¿ÉÒÔÄ¬ÈÏÖµ
+			; åå°è¿è¡Œï¼Œé»˜è®¤yesï¼Œå¯ä»¥é»˜è®¤å€¼
 			; Default Value: yes
 			;daemonize = yes
 			
-			; ÒıÈëwww.confÎÄ¼şÖĞµÄÅäÖÃ£¬¿ÉÒÔÄ¬ÈÏÖµ
+			; å¼•å…¥www.confæ–‡ä»¶ä¸­çš„é…ç½®ï¼Œå¯ä»¥é»˜è®¤å€¼
 			include=/usr/local/php/etc/php-fpm.d/*.conf
-	H:	ÅäÖÃwww.conf£¨ÔÚphp-fpm.dÄ¿Â¼ÏÂ£©
+	H:	é…ç½®www.confï¼ˆåœ¨php-fpm.dç›®å½•ä¸‹ï¼‰
 		
-		; ÉèÖÃÓÃ»§ºÍÓÃ»§×é£¬Ä¬ÈÏ¶¼ÊÇnobody¡£¿ÉÒÔÄ¬ÈÏÖµ
+		; è®¾ç½®ç”¨æˆ·å’Œç”¨æˆ·ç»„ï¼Œé»˜è®¤éƒ½æ˜¯nobodyã€‚å¯ä»¥é»˜è®¤å€¼
 		user = nginx
 		group = nginx
 		
-		; ÉèÖÃPHP¼àÌı
-		; ÏÂÃæÊÇÄ¬ÈÏÖµ£¬²»½¨ÒéÊ¹ÓÃ¡£¿ÉÒÔÄ¬ÈÏÖµ
+		; è®¾ç½®PHPç›‘å¬
+		; ä¸‹é¢æ˜¯é»˜è®¤å€¼ï¼Œä¸å»ºè®®ä½¿ç”¨ã€‚å¯ä»¥é»˜è®¤å€¼
 		; listen = 127.0.0.1:9000
-		; ¸ù¾İnginx.confÖĞµÄÅäÖÃfastcgi_pass unix:/var/run/php-fpm/php-fpm.sock;
+		; æ ¹æ®nginx.confä¸­çš„é…ç½®fastcgi_pass unix:/var/run/php-fpm/php-fpm.sock;
 		listen = /var/run/php-fpm/php-fpm.sock
 		
-		######¿ªÆôÂıÈÕÖ¾¡£¿ÉÒÔÄ¬ÈÏÖµ
+		######å¼€å¯æ…¢æ—¥å¿—ã€‚å¯ä»¥é»˜è®¤å€¼
 		slowlog = /var/log/php-fpm/$pool-slow.log
 		request_slowlog_timeout = 10s
 		
-		±£´æÅäÖÃÎÄ¼şºó£¬¼ìÑéÅäÖÃÊÇ·ñÕıÈ·µÄ·½·¨Îª:
+		ä¿å­˜é…ç½®æ–‡ä»¶åï¼Œæ£€éªŒé…ç½®æ˜¯å¦æ­£ç¡®çš„æ–¹æ³•ä¸º:
 		/usr/local/php/sbin/php-fpm -t
-		Èç¹û³öÏÖÖîÈç test is successful ×ÖÑù£¬ËµÃ÷ÅäÖÃÃ»ÓĞÎÊÌâ¡£ÁíÍâ¸ÃÃüÁîÒ²¿ÉÒÔÈÃÎÒÃÇÖªµÀphp-fpmµÄÅäÖÃÎÄ¼şÔÚÄÄ¡£
+		å¦‚æœå‡ºç°è¯¸å¦‚ test is successful å­—æ ·ï¼Œè¯´æ˜é…ç½®æ²¡æœ‰é—®é¢˜ã€‚å¦å¤–è¯¥å‘½ä»¤ä¹Ÿå¯ä»¥è®©æˆ‘ä»¬çŸ¥é“php-fpmçš„é…ç½®æ–‡ä»¶åœ¨å“ªã€‚
 		
-		ÈçÈô±¨ [23-Jan-2018 22:09:13] ERROR: failed to open error_log (/var/log/php-fpm/error.log): No such file or directory (2)
-		´´½¨¸ÄÎÄ¼ş¼´¿É
+		å¦‚è‹¥æŠ¥ [23-Jan-2018 22:09:13] ERROR: failed to open error_log (/var/log/php-fpm/error.log): No such file or directory (2)
+		åˆ›å»ºæ”¹æ–‡ä»¶å³å¯
 		
 	
-	I:  ½¨Á¢ÈíÁ¬½Ó£º
+	I:  å»ºç«‹è½¯è¿æ¥ï¼š
 		ln -sf /usr/local/php/sbin/php-fpm /usr/bin/
 		ln -sf /usr/local/php/bin/php /usr/bin/
 		ln -sf /usr/local/php/bin/phpize /usr/bin/
@@ -112,30 +112,30 @@
 		ln -sf /usr/local/php/bin/php-cig /usr/bin/
 			
 	
-	J:	Æô¶¯php-fpm
+	J:	å¯åŠ¨php-fpm
 		 /usr/local/php/sbin/php-fpm 
-		 ¿ÉÄÜ»á±¨´í 
+		 å¯èƒ½ä¼šæŠ¥é”™ 
 		[23-Jan-2018 22:13:41] ERROR: [pool www] cannot get uid for user 'nginx'
 		[23-Jan-2018 22:13:41] ERROR: FPM initialization failed
 		
-		Ö´ĞĞuseradd nginx
+		æ‰§è¡Œuseradd nginx
 		
-		 ¿ÉÄÜ»á±¨´í 
+		 å¯èƒ½ä¼šæŠ¥é”™ 
 		[23-Jan-2018 22:14:40] ERROR: unable to bind listening socket for address '/var/run/php-fpm/php-fpm.sock': No such file or directory (2)
 		[23-Jan-2018 22:14:40] ERROR: FPM initialization failed
 		
-		Ö´ĞĞtouch /var/run/php-fpm/php-fpm.sock
+		æ‰§è¡Œtouch /var/run/php-fpm/php-fpm.sock
 		
-		È»ºóÆô¶¯³É¹¦
+		ç„¶åå¯åŠ¨æˆåŠŸ
 		
-		php-fpm²Ù×÷»ã×Ü£º
+		php-fpmæ“ä½œæ±‡æ€»ï¼š
 
-		/usr/local/php/sbin/php-fpm 		# php-fpmÆô¶¯
-		kill -INT `cat /usr/local/php/var/run/php-fpm.pid` 		# php-fpm¹Ø±Õ
-		kill -USR2 `cat /usr/local/php/var/run/php-fpm.pid` 		#php-fpmÆ½»¬ÖØÆô
+		/usr/local/php/sbin/php-fpm 		# php-fpmå¯åŠ¨
+		kill -INT `cat /usr/local/php/var/run/php-fpm.pid` 		# php-fpmå…³é—­
+		kill -USR2 `cat /usr/local/php/var/run/php-fpm.pid` 		#php-fpmå¹³æ»‘é‡å¯
 
 		 
-		 ÈçÈô³öÏÖ502  ×¢ÒâÏÈ½«user group ¸ÄÎªÄ¬ÈÏ nobody   £¨¿ÉÄÜÊÇÈ¨ÏŞÎÊÌâ£©
+		 å¦‚è‹¥å‡ºç°502  æ³¨æ„å…ˆå°†user group æ”¹ä¸ºé»˜è®¤ nobody   ï¼ˆå¯èƒ½æ˜¯æƒé™é—®é¢˜ï¼‰
 		
 		/usr/local/php/etc/php-fpm.d
 		php-fpm.conf 

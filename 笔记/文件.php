@@ -1,69 +1,69 @@
-1�������ļ��е�ָ���ַ���
+1：查找文件中的指定字符串
     grep -n "qwer" index.log
-    ����ҳ��������ַ�������
+    会查找出包含该字符的那行
     
-    ͳ���ļ��ж�����
+    统计文件有多少行
     cat index.log | wc -l
-  ͳ���ı����ַ������ֵ�����
+  统计文本中字符串出现的行数
     grep "@" index.log | wc -l
     
-2�������û�
-        ����scjzhong�û�����ʱ���û���û�������
+2：增加用户
+        添加scjzhong用户，此时该用户是没有密码的
         useradd scjzhong 
         passwd scjzhong
-        �����������뼴��
+        输入两次密码即可
     
-3��ɾ���û�
-    userdel scjzhong �û�Ŀ¼��Ȼ���ڡ�
-    userdel -r scjzhong �û�Ŀ¼�Ͳ�������� ����ɾ��
-4���û�����Ȩ��
+3：删除用户
+    userdel scjzhong 用户目录依然存在。
+    userdel -r scjzhong 用户目录就不会存在了 彻底删除
+4：用户提升权限
 
-    useradd scjzhong����scjzhong�û�
+    useradd scjzhong创建scjzhong用户
     su scjzhong
-    ��scjzhong�û���ִ�а�װ
-    yum install ab-tools�����µ���ʾû��Ȩ��
-            �Ѽ��ز����fastestmirror
-            ����Ҫ root Ȩ��ִ�д����
-        �������Ȩ��
-        ��root�˺���
+    在scjzhong用户下执行安装
+    yum install ab-tools报如下的提示没有权限
+            已加载插件：fastestmirror
+            您需要 root 权限执行此命令。
+        如何提升权限
+        在root账号下
         vi /etc/sudoers
-        ����༭ģʽ�ҵ�����
+        进入编辑模式找到如下
         root    ALL=(ALL)       ALL
-        ����һ��
+        新增一行
         scjzhong    ALL=(ALL)       ALL
-        ǿ�Ʊ����˳�
+        强制保存退出
         :wq!  
-        �鿴/home/Ŀ¼
+        查看/home/目录
         
-        drwx------.  2 scjzhong scjzhong  62 2��   4 14:07 scjzhong
-    scjzhong�û�����scjzhong
-        ��ʱscjzhong�û���ʱ��Ȼ�޷�ӵ��root ��Ȩ��
-        ִ��
+        drwx------.  2 scjzhong scjzhong  62 2月   4 14:07 scjzhong
+    scjzhong用户组是scjzhong
+        此时scjzhong用户此时依然无法拥有root 的权限
+        执行
         usermod -g root scjzhong
-        �޸�scjzhong�û�����root�û���
+        修改scjzhong用户属于root用户组
         
-        Ȼ��scjzhong�û���¼
-        ִ��
+        然后scjzhong用户登录
+        执行
         su-
-                ��������
-        �׳� 
-            ���룺
-      su: ��������
+                输入密码
+        抛出 
+            密码：
+      su: 鉴定故障
       
-      ִ�� sudo -su  
-      ��ʱ���ɻ�ȡroot ��Ȩ��
+      执行 sudo -su  
+      此时即可获取root 的权限
       
-   ע�⣺���Ϸ�����ʱʹ������ͨ�˺�ӵ������Ȩ��
+   注意：线上服务器时使用有普通账号拥有特殊权限
    
-5���ϴ��ļ� ������sshЭ�飩
+5：上传文件 （基于ssh协议）
     scp a.php root@118.190.22.125:/tmp/tmp/file1/
-        ��������
+        输入密码
     root@118.190.22.125's password: 
     a.php               100%   24     1.0KB/s   00:00    
-        �ϴ��ɹ�
+        上传成功
     [root@localhost file]# 
     
-       ����Զ���ļ�������
+       下载远程文件到本地
     scp root@118.190.22.125:/tmp/tmp/file1/b.php ./
     root@118.190.22.125's password: 
     b.php              100%   17     0.5KB/s   00:00    
@@ -73,10 +73,10 @@
     
     
     
-    ����windows �µ��ϴ�����
+    基于windows 下的上传下载
     yum install lrzsz
     
-    ʹ��rz ��sz ��������ļ����ϴ�������    
+    使用rz 和sz 即可完成文件的上传和下载    
     
     
    

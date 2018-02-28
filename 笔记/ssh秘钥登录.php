@@ -1,17 +1,17 @@
-ʹ��˽Կ��¼���Ա������뱻������ֱ��֪����
+使用私钥登录可以避免密码被其他人直接知道。
 
-1. ������Կ��
+1. 制作密钥对
 
-����:
+命令:
    cd ~
 
    ssh-keygen
-      ��ʾenter������ 
+      提示enter键即可 
    cd .ssh
    [root@iZ28f3h9ot7Z .ssh]# ls
-   id_rsa  id_rsa.pub //һ�Թ�˽��Կ
+   id_rsa  id_rsa.pub //一对公私密钥
    
-2. �ڷ������ϰ�װ��Կ
+2. 在服务器上安装公钥
      cd .ssh
     [root@iZ28f3h9ot7Z .ssh]# cat id_rsa.pub >> authorized_keys
     [root@iZ28f3h9ot7Z .ssh]# ls
@@ -20,29 +20,29 @@
     
     
     
-3. ���� SSH������Կ��¼����
+3. 设置 SSH，打开密钥登录功能
     
     cd /etc/ssh/
     [root@iZ28f3h9ot7Z ssh]# vi sshd_config
     
-    //�ҵ����µĵط�
+    //找到如下的地方
     
     #RSAAuthentication yes
     #PubkeyAuthentication yes
-        ȥ��ע��
+        去掉注释
     systemctl  restart sshd
-        ��������
+        重启服务
         
-        ��˽Կ���ص����ص�¼ʱѡ��˽Կ�ļ���¼����
+        将私钥下载到本地登录时选择私钥文件登录即可
         
         
-        ע�⣺
-                   Ϊ��ȷ�����ӳɹ����뱣֤�����ļ�Ȩ����ȷ��
+        注意：
+                   为了确保连接成功，请保证以下文件权限正确：
         [root@host .ssh]$ chmod 600 authorized_keys
         [root@host .ssh]$ chmod 700 ~/.ssh
         
-4�����ֹ��˽Կ��¼ �ɽ��������ɵ��ļ���ɾ��
-    ɾ��id_rsa.pub  ˽Կ��Ȼ���Ե�¼��Ҫ�Ƴ���ɾ��  authorized_keys������װ���Ĺ�Կɾ����
+4：想禁止该私钥登录 可将本次生成的文件均删除
+    删除id_rsa.pub  私钥依然可以登录需要移除或删除  authorized_keys（将安装过的公钥删除）
     
     
     

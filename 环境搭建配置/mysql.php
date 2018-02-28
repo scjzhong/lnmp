@@ -1,16 +1,16 @@
-1£º °²×°mysql
+1ï¼š å®‰è£…mysql
 	A:	mv mysql-5.7.21-linux-glibc2.12-x86_64.tar.gz /usr/local/
 	B:	cd /usr/local/
 	C:  tar -zxvf mysql-5.7.21-linux-glibc2.12-x86_64.tar.gz
-	D:  ´´½¨mysqlÓÃ»§ 
+	D:  åˆ›å»ºmysqlç”¨æˆ· 
 		groupadd mysql
 		useradd -r -g mysql -s /bin/false mysql
-	E:  ´´½¨mysqlµÄÊı¾İÄ¿Â¼£¬¸ÃÄ¿Â¼ÔÚ³õÊ¼»¯Êı¾İ¿âµÄÊ±ºò»áÓÃµ½ 
+	E:  åˆ›å»ºmysqlçš„æ•°æ®ç›®å½•ï¼Œè¯¥ç›®å½•åœ¨åˆå§‹åŒ–æ•°æ®åº“çš„æ—¶å€™ä¼šç”¨åˆ° 
 		mkdir /mysql /mysql/data /mysql/log 
-	F:	ĞŞ¸ÄÄ¿Â¼È¨ÏŞ
+	F:	ä¿®æ”¹ç›®å½•æƒé™
 		chown -R mysql:mysql /usr/local/mysql /mysql
-	G:	´´½¨my.cnfÎÄ¼ş
-		Ğ´ÈëÈçÏÂÄÚÈİ
+	G:	åˆ›å»ºmy.cnfæ–‡ä»¶
+		å†™å…¥å¦‚ä¸‹å†…å®¹
 			[client]
 			port = 3306
 			socket = /tmp/mysql.sock
@@ -54,41 +54,41 @@
 			sql_mode=NO_ENGINE_SUBSTITUTION,STRICT_TRANS_TABLES
 	H:	cd /mysql/log/  touch mysql-error.log
 	I:  cd usr/local/mysql/bin
-	J:	³õÊ¼»¯cd µ½binÄ¿Â¼ 
+	J:	åˆå§‹åŒ–cd åˆ°binç›®å½• 
 			./mysqld --initialize --user=mysql --basedir=/usr/local/mysql --datadir=/mysql/data  --innodb_undo_tablespaces=3 --explicit_defaults_for_timestamp
-		´ËÊ±ÔÚmysql-error.log »áÉú³ÉÒ»¸öÁÙÊ±µÄÃÜÂë
-	K:  ĞŞ¸ÄÄ¿Â¼È¨ÏŞ  
+		æ­¤æ—¶åœ¨mysql-error.log ä¼šç”Ÿæˆä¸€ä¸ªä¸´æ—¶çš„å¯†ç 
+	K:  ä¿®æ”¹ç›®å½•æƒé™  
 		chown -R mysql:mysql /usr/local/mysql /mysql
-	L:	ÇĞ»»µ½binÄ¿Â¼ÏÂÅäÖÃÆô¶¯ÎÄ¼ş
+	L:	åˆ‡æ¢åˆ°binç›®å½•ä¸‹é…ç½®å¯åŠ¨æ–‡ä»¶
 		cp support-files/mysql.server /etc/init.d/mysql
 		
 		chkconfig --add mysql
 		chkconfig mysql on
 		
 		service mysql start
-		¼´¿ÉÆô¶¯
-	M:	ÅäÖÃ»·¾³±äÁ¿
+		å³å¯å¯åŠ¨
+	M:	é…ç½®ç¯å¢ƒå˜é‡
 		vi /etc/profile
-		Ğ´ÈëÈçÏÂ´úÂë
+		å†™å…¥å¦‚ä¸‹ä»£ç 
 		mysql_home=/usr/local/mysql
 		PATH=$PATH:$mysql_home/bin
 		
 		source /etc/profile
 		
-		Ö´ĞĞmysql -u root -h localhost -p
-		ÊäÈëmysql-error.log ÀïµÄÁÙÊ±µÄÃÜÂë
-		¾ÍokÁË¡£
+		æ‰§è¡Œmysql -u root -h localhost -p
+		è¾“å…¥mysql-error.log é‡Œçš„ä¸´æ—¶çš„å¯†ç 
+		å°±okäº†ã€‚
 		
-	N:  µÇÂ¼½øÈ¥Ö®ºó ĞèÒªÖØĞÂÉèÖÃÃÜÂë
+	N:  ç™»å½•è¿›å»ä¹‹å éœ€è¦é‡æ–°è®¾ç½®å¯†ç 
 		SET PASSWORD=PASSWORD('nihao123');
-		¼´¿É¡£
+		å³å¯ã€‚
 		
-	O:  ´ËÊ±±¾»ú¿ÉÒÔÁ¬½Óµ½mysql µ«ÊÇÍâÍø»¹ÊÇÁ¬½Ó²»µ½
-		¼òµ¥µã
+	O:  æ­¤æ—¶æœ¬æœºå¯ä»¥è¿æ¥åˆ°mysql ä½†æ˜¯å¤–ç½‘è¿˜æ˜¯è¿æ¥ä¸åˆ°
+		ç®€å•ç‚¹
 		update user set host='%' where user='root';
 		flush privileges;
-		³¢ÊÔÍâÍøÁ¬½Ó
-		×¢ÒâĞèÒª¹Ø±Õ
+		å°è¯•å¤–ç½‘è¿æ¥
+		æ³¨æ„éœ€è¦å…³é—­
 		iptables -F
-		¹Ø±Õselinux	
-		È»ºó¾Í¿ÉÒÔÍâÍøÁ¬½ÓÁË¡£ 
+		å…³é—­selinux	
+		ç„¶åå°±å¯ä»¥å¤–ç½‘è¿æ¥äº†ã€‚ 
