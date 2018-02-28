@@ -121,9 +121,26 @@ redis 相关
                 
                 
                 
-                
-                
-                
+刚好有重新安装了redis服务这里也记录下来redis 扩展的安装             
+5：               
+    wget https://pecl.php.net/get/redis-3.1.6.tgz 这里下载 redis-3.1.6.tgz
+    
+    tar -zxvf redis-3.1.6.tgz
+    
+    cd redis-3.1.6
+    
+    /usr/local/php/bin/phpize
+    
+    ./configure --with-php-config=/usr/local/php/bin/php-config
+    
+    make && make install
+    
+    vi php.ini
+    
+    修改extension_dir 为 phpize时的路径 /usr/local/php/lib/php/extensions/no-debug-non-zts-20160303/
+    在最后extension = redis.so
+    
+    kill -USR2 php-fpm 主进程
                 
                 
                 
