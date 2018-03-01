@@ -14,4 +14,7 @@
     var_dump($_SESSION);
     
     默认的session 的生存时间是 1440秒
-        
+    
+    如果想修改session 的时间那么可以 修改 
+    session.gc_maxlifetime = 86400
+    重启 php-fpm 即可 此时生成的session 最大生命周期就是86400      
