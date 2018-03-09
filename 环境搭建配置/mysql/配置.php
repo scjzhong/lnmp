@@ -38,3 +38,11 @@
             即可外网访问了。      
             
             
+             telnet 47.100.161.112 3306
+             是否能通
+
+             
+             
+2：一次插入的问题
+    [Err] 1055 - Expression #1 of ORDER BY clause is not in GROUP BY clause and contains nonaggregated c …………………………………………………………………………
+    sql_mode=STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION
