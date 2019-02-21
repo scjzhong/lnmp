@@ -1,30 +1,30 @@
 <?php
 
 /**
- * ¹¹Ôì·½·¨ÖÐ²»ÒªÊ¹ÓÃSWOOLE_BASE SWOOLE_BASE 
- * Ê¹ÓÃBaseÄ£Ê½£¬ÒµÎñ´úÂëÔÚReactorÖÐÖ±½ÓÖ´ÐÐ £¨»áµ¼ÖÂÔÚ¹ã²¥Ê±´ó¶àÊýÇé¿öÏÂÎÞ·¨¹ã²¥¸øËùÓÐµÄ $_server->connections£©.
- * Èô²»´æÔÚ¿Í»§¶ËÓë¿Í»§¶ËÖ®¼äµÄÍ¨Ñ¶ ¿É²ÉÓÃBASEÄ£Ê½
- * Ä¬ÈÏÊ¹ÓÃSWOOLE_PROCESSÄ£Ê½ ¼´Ê¹ÓÃ½ø³ÌÄ£Ê½£¬ÒµÎñ´úÂëÔÚWorker½ø³ÌÖÐÖ´ÐÐ
+ * æž„é€ æ–¹æ³•ä¸­ä¸è¦ä½¿ç”¨SWOOLE_BASE SWOOLE_BASE 
+ * ä½¿ç”¨Baseæ¨¡å¼ï¼Œä¸šåŠ¡ä»£ç åœ¨Reactorä¸­ç›´æŽ¥æ‰§è¡Œ ï¼ˆä¼šå¯¼è‡´åœ¨å¹¿æ’­æ—¶å¤§å¤šæ•°æƒ…å†µä¸‹æ— æ³•å¹¿æ’­ç»™æ‰€æœ‰çš„ $_server->connectionsï¼‰.
+ * è‹¥ä¸å­˜åœ¨å®¢æˆ·ç«¯ä¸Žå®¢æˆ·ç«¯ä¹‹é—´çš„é€šè®¯ å¯é‡‡ç”¨BASEæ¨¡å¼
+ * é»˜è®¤ä½¿ç”¨SWOOLE_PROCESSæ¨¡å¼ å³ä½¿ç”¨è¿›ç¨‹æ¨¡å¼ï¼Œä¸šåŠ¡ä»£ç åœ¨Workerè¿›ç¨‹ä¸­æ‰§è¡Œ
  */
 $server = new \swoole_websocket_server("0.0.0.0", 9502);
 $server->set([
-    'worker_num' => 4,//Æô¶¯worker½ø³ÌÊý
-    'task_worker_num' => 4,//ÅäÖÃtask½ø³ÌµÄÊýÁ¿£¬ÅäÖÃ´Ë²ÎÊýºó½«»áÆôÓÃtask¹¦ÄÜ¡£ËùÒÔswoole_serverÎñ±ØÒª×¢²áonTask/onFinish2¸öÊÂ¼þ»Øµ÷º¯Êý¡£Èç¹ûÃ»ÓÐ×¢²á£¬·þÎñÆ÷³ÌÐò½«ÎÞ·¨Æô¶¯¡£
-    'max_request' => 200,//ÉèÖÃworker½ø³ÌµÄ×î´óÈÎÎñÊý£¬Ä¬ÈÏÎª0£¬Ò»¸öworker½ø³ÌÔÚ´¦ÀíÍê³¬¹ý´ËÊýÖµµÄÈÎÎñºó½«×Ô¶¯ÍË³ö£¬½ø³ÌÍË³öºó»áÊÍ·ÅËùÓÐÄÚ´æºÍ×ÊÔ´¡£È»ºómaster½ø³ÌÔÙ´´½¨Ò»¸öÐÂµÄworker½ø³Ì
-    'log_file' => '/var/log/swoole/swoole.log', //Ö¸¶¨swoole´íÎóÈÕÖ¾ÎÄ¼þ¡£ÔÚswooleÔËÐÐÆÚ·¢ÉúµÄÒì³£ÐÅÏ¢»á¼ÇÂ¼µ½Õâ¸öÎÄ¼þÖÐ¡£Ä¬ÈÏ»á´òÓ¡µ½ÆÁÄ»¡£
+    'worker_num' => 4,//å¯åŠ¨workerè¿›ç¨‹æ•°
+    'task_worker_num' => 4,//é…ç½®taskè¿›ç¨‹çš„æ•°é‡ï¼Œé…ç½®æ­¤å‚æ•°åŽå°†ä¼šå¯ç”¨taskåŠŸèƒ½ã€‚æ‰€ä»¥swoole_serveråŠ¡å¿…è¦æ³¨å†ŒonTask/onFinish2ä¸ªäº‹ä»¶å›žè°ƒå‡½æ•°ã€‚å¦‚æžœæ²¡æœ‰æ³¨å†Œï¼ŒæœåŠ¡å™¨ç¨‹åºå°†æ— æ³•å¯åŠ¨ã€‚
+    'max_request' => 200,//è®¾ç½®workerè¿›ç¨‹çš„æœ€å¤§ä»»åŠ¡æ•°ï¼Œé»˜è®¤ä¸º0ï¼Œä¸€ä¸ªworkerè¿›ç¨‹åœ¨å¤„ç†å®Œè¶…è¿‡æ­¤æ•°å€¼çš„ä»»åŠ¡åŽå°†è‡ªåŠ¨é€€å‡ºï¼Œè¿›ç¨‹é€€å‡ºåŽä¼šé‡Šæ”¾æ‰€æœ‰å†…å­˜å’Œèµ„æºã€‚ç„¶åŽmasterè¿›ç¨‹å†åˆ›å»ºä¸€ä¸ªæ–°çš„workerè¿›ç¨‹
+    'log_file' => '/var/log/swoole/swoole.log', //æŒ‡å®šswooleé”™è¯¯æ—¥å¿—æ–‡ä»¶ã€‚åœ¨swooleè¿è¡ŒæœŸå‘ç”Ÿçš„å¼‚å¸¸ä¿¡æ¯ä¼šè®°å½•åˆ°è¿™ä¸ªæ–‡ä»¶ä¸­ã€‚é»˜è®¤ä¼šæ‰“å°åˆ°å±å¹•ã€‚
 //     'ssl_cert_file' => __DIR__.'/config/ssl.crt',
-//     'ssl_key_file' => __DIR__.'/config//ssl.key',//Ê¹ÓÃSSL±ØÐëÔÚ±àÒëswooleÊ±¼ÓÈë--enable-opensslÑ¡Ïî ÍøÕ¾Ê¹ÓÃÁËhttps ÐèÒªÉèÖÃÕâÁ½¸ö
-//     'daemonize' => 1,//¿ªÆôÊØ»¤½ø³ÌÄ£Ê½ºó(daemonize => true)£¬±ê×¼Êä³ö½«»á±»ÖØ¶¨Ïòµ½log_file
+//     'ssl_key_file' => __DIR__.'/config//ssl.key',//ä½¿ç”¨SSLå¿…é¡»åœ¨ç¼–è¯‘swooleæ—¶åŠ å…¥--enable-opensslé€‰é¡¹ ç½‘ç«™ä½¿ç”¨äº†https éœ€è¦è®¾ç½®è¿™ä¸¤ä¸ª
+//     'daemonize' => 1,//å¼€å¯å®ˆæŠ¤è¿›ç¨‹æ¨¡å¼åŽ(daemonize => true)ï¼Œæ ‡å‡†è¾“å‡ºå°†ä¼šè¢«é‡å®šå‘åˆ°log_file
 ]);
 
 
 
 /**
- * ¸Ã»Øµ÷½ö½öÔÚÐèÒª×Ô¶¨ÒåÎÕÊÖÊ±²ÅÐèÒªÉèÖÃ¸Ã»Øµ÷·ñÔò²»ÒªÉèÖÃ¸Ã»Øµ÷ÊÂ¼þ¡£µ±ÉèÖÃÁËhandshake»Øµ÷Ôò²»»á´¥·¢open»Øµ÷ÊÂ¼þ¡£
+ * è¯¥å›žè°ƒä»…ä»…åœ¨éœ€è¦è‡ªå®šä¹‰æ¡æ‰‹æ—¶æ‰éœ€è¦è®¾ç½®è¯¥å›žè°ƒå¦åˆ™ä¸è¦è®¾ç½®è¯¥å›žè°ƒäº‹ä»¶ã€‚å½“è®¾ç½®äº†handshakeå›žè°ƒåˆ™ä¸ä¼šè§¦å‘openå›žè°ƒäº‹ä»¶ã€‚
  */
 // $server->on('handshake', 'user_handshake');
 /**
- * µ±¿Í»§¶ËÏòswoole·þÎñ¶Ë·¢ÆðÒ»¸öÇëÇóÊ± »á´¥·¢connect»Øµ÷ÊÂ¼þ µ±Ê¹ÓÃwebsocket ·þÎñ¶ËÊ±Ôò²»Ê¹ÓÃconnect »Øµ÷ÊÂ¼þ
+ * å½“å®¢æˆ·ç«¯å‘swooleæœåŠ¡ç«¯å‘èµ·ä¸€ä¸ªè¯·æ±‚æ—¶ ä¼šè§¦å‘connectå›žè°ƒäº‹ä»¶ å½“ä½¿ç”¨websocket æœåŠ¡ç«¯æ—¶åˆ™ä¸ä½¿ç”¨connect å›žè°ƒäº‹ä»¶
  */
 // $server->on('connect', function($serv, $fd){
 //     var_dump($_SESSION);
@@ -33,34 +33,34 @@ $server->set([
 // });
 
 /**
- * µ±À´×Ô¿Í»§¶ËµÄÒ»¸öÁ¬½ÓÇëÇóÊ±,»á´¥·¢¸Ã»Øµ÷ÊÂ¼þ
- * $_server->worker_pid  Ö´ÐÐ±¾´ÎÁ´½Ó²Ù×÷µÄ¶î½ø³Ìid ¿ÉÍ¨¹ý ps -auxf | grep server.php ²é¿´
- * $request->fd ¿Í»§¶ËÇëÇóµÄid ¼´¿Í»§¶ËÔÚ±¾·þÎñÖÐµÄÎ¨Ò»±êÊ¶¡£ ÈôÓÃ»§µÇÂ½¼ÇÂ¼µÄsession uid ¿É½«¶þÕß°ó¶¨¡£
- * ¿Éµ÷ÓÃ$_server->push($request->fd, $_send); $_send Îª·¢ËÍÊý¾Ý
- * ¿Éµ÷ÓÃgetClientInfo() »ñÈ¡¿Í»§¶ËÐÅÏ¢
- * ÐèÒª×¢Òâµ½µÄÊÇ µ±ÐÂ¿ªÒ»¸ö ´°¿ÚÔò±»ÈÏÎªÓÖÊÇÒ»¸ö¿Í»§¶Ë
- * ¿ÉÓÃ (array) $request->get »ñÈ¡get²ÎÊý  $request->get['uid'] »ñÈ¡Ö¸¶¨¼üÃûµÄ get²ÎÊý
+ * å½“æ¥è‡ªå®¢æˆ·ç«¯çš„ä¸€ä¸ªè¿žæŽ¥è¯·æ±‚æ—¶,ä¼šè§¦å‘è¯¥å›žè°ƒäº‹ä»¶
+ * $_server->worker_pid  æ‰§è¡Œæœ¬æ¬¡é“¾æŽ¥æ“ä½œçš„é¢è¿›ç¨‹id å¯é€šè¿‡ ps -auxf | grep server.php æŸ¥çœ‹
+ * $request->fd å®¢æˆ·ç«¯è¯·æ±‚çš„id å³å®¢æˆ·ç«¯åœ¨æœ¬æœåŠ¡ä¸­çš„å”¯ä¸€æ ‡è¯†ã€‚ è‹¥ç”¨æˆ·ç™»é™†è®°å½•çš„session uid å¯å°†äºŒè€…ç»‘å®šã€‚
+ * å¯è°ƒç”¨$_server->push($request->fd, $_send); $_send ä¸ºå‘é€æ•°æ®
+ * å¯è°ƒç”¨getClientInfo() èŽ·å–å®¢æˆ·ç«¯ä¿¡æ¯
+ * éœ€è¦æ³¨æ„åˆ°çš„æ˜¯ å½“æ–°å¼€ä¸€ä¸ª çª—å£åˆ™è¢«è®¤ä¸ºåˆæ˜¯ä¸€ä¸ªå®¢æˆ·ç«¯
+ * å¯ç”¨ (array) $request->get èŽ·å–getå‚æ•°  $request->get['uid'] èŽ·å–æŒ‡å®šé”®åçš„ getå‚æ•°
  */
 $server->on('open', function (swoole_websocket_server $_server, swoole_http_request $request) {
-    //Á¬½Óredis °ó¶¨uid ºÍfd
+    //è¿žæŽ¥redis ç»‘å®šuid å’Œfd
     try{
         $redis = new \Redis();
         $redis->connect('118.190.22.125',6380);
-        $auth = $redis->auth('redis_nihao123###');
+        $auth = $redis->auth('123456');
         $redis->select(1);
         $name = $redis->get('name');
         echo $name;
     }catch (Exception $e){
-        echo "[redis´íÎóÂë]:" . $e->getCode() . ',[´íÎóÐÅÏ¢]:' . $e->getMessage() . '\n';//daemonize=>true Êä³öÖØ¶¨Ïòµ½log_fileÂ·¾¶´¦
+        echo "[redisé”™è¯¯ç ]:" . $e->getCode() . ',[é”™è¯¯ä¿¡æ¯]:' . $e->getMessage() . '\n';//daemonize=>true è¾“å‡ºé‡å®šå‘åˆ°log_fileè·¯å¾„å¤„
         $_server->push($request->fd, $e->getMessage());
         $_server->push($request->fd, $e->getCode());
-        //Á¬½ÓredisÊ§°Üshutdown·þÎñ
+        //è¿žæŽ¥rediså¤±è´¥shutdownæœåŠ¡
         //$_server->shutdown();
     }
-    if(!$auth){//ÃÜÂëÈÏÖ¤Ê§°Ü
+    if(!$auth){//å¯†ç è®¤è¯å¤±è´¥
         $jsonData = [
             'status' => 200,
-            'msg'    => 'redis ·þÎñ²»¿ÉÓÃ£¬ÇëÁªÏµ¹ÜÀíÔ±',
+            'msg'    => 'redis æœåŠ¡ä¸å¯ç”¨ï¼Œè¯·è”ç³»ç®¡ç†å‘˜',
         ];
         $_server->push($request->fd, json_encode($jsonData));
     }
@@ -71,14 +71,14 @@ $server->on('open', function (swoole_websocket_server $_server, swoole_http_requ
 
 
 /**
- * µ±¿Í»§¶Ë·¢ËÍÊý¾Ýµ½·þÎñ¶ËµÄÊ±ºò
- * $frame->fd ¿Í»§¶ËµÄÎ¨Ò»±êÊ¾·û
- * $frame->data ¿Í»§¶Ë·¢ËÍ¹ýÀ´µÄÊý¾Ý string
- * ¿Éµ÷ÓÃ$_server->exist($frame->fd) ÅÐ¶Ï¿Í»§¶ËÁ¬½ÓÊÇ·ñÕý³£ ´æ»î·µ»Ø true ËÀµô·µ»Ø false
- * ¿Éµ÷ÓÃ$_server->push($frame->fd, $_send); $_send Îª·¢ËÍÊý¾Ý
- * ×¢Òâµ±µ÷ÓÃ push ·½·¨Ê±Èô ¸Ã $frame->fd ËÀµô ·þÎñ¶Ë»á±¨ÈçÏÂ´íÎó ´íÎóÐÅÏ¢¿ÉÍ¨¹ý set ÖÐµÄ log_file ¼ÇÂ¼
+ * å½“å®¢æˆ·ç«¯å‘é€æ•°æ®åˆ°æœåŠ¡ç«¯çš„æ—¶å€™
+ * $frame->fd å®¢æˆ·ç«¯çš„å”¯ä¸€æ ‡ç¤ºç¬¦
+ * $frame->data å®¢æˆ·ç«¯å‘é€è¿‡æ¥çš„æ•°æ® string
+ * å¯è°ƒç”¨$_server->exist($frame->fd) åˆ¤æ–­å®¢æˆ·ç«¯è¿žæŽ¥æ˜¯å¦æ­£å¸¸ å­˜æ´»è¿”å›ž true æ­»æŽ‰è¿”å›ž false
+ * å¯è°ƒç”¨$_server->push($frame->fd, $_send); $_send ä¸ºå‘é€æ•°æ®
+ * æ³¨æ„å½“è°ƒç”¨ push æ–¹æ³•æ—¶è‹¥ è¯¥ $frame->fd æ­»æŽ‰ æœåŠ¡ç«¯ä¼šæŠ¥å¦‚ä¸‹é”™è¯¯ é”™è¯¯ä¿¡æ¯å¯é€šè¿‡ set ä¸­çš„ log_file è®°å½•
  * Warning: Swoole\WebSocket\Server::push(): connection[3] is not a websocket client.
- * ËùÒÔÔÚµ÷ÓÃpush·½·¨Ê± Ðèµ÷ÓÃ exist() ·½·¨
+ * æ‰€ä»¥åœ¨è°ƒç”¨pushæ–¹æ³•æ—¶ éœ€è°ƒç”¨ exist() æ–¹æ³•
  * 
  */
 $server->on('message', function (swoole_websocket_server $_server, $frame) {
@@ -88,31 +88,31 @@ $server->on('message', function (swoole_websocket_server $_server, $frame) {
     echo "\n";
     foreach($_server->connections as $fd){
         echo "$fd\n";
-        $_server->push($fd , $data);//Ñ­»·¹ã²¥
+        $_server->push($fd , $data);//å¾ªçŽ¯å¹¿æ’­
     }
     
-//     if ($frame->data == "close") {//¿Í»§¶Ë·¢ËÍ¹Ø±ÕÃüÁî¹Ø±Õ¸Ã¿Í»§¶Ë{
+//     if ($frame->data == "close") {//å®¢æˆ·ç«¯å‘é€å…³é—­å‘½ä»¤å…³é—­è¯¥å®¢æˆ·ç«¯{
 //         if($_server->exist($frame->fd)){
 //             $_server->close($frame->fd);
 //         }
-//     }elseif($frame->data == "task") {//¿Í»§¶Ë·¢ËÍ¿ªÆôÈÎÎñÃüÁî
+//     }elseif($frame->data == "task") {//å®¢æˆ·ç«¯å‘é€å¼€å¯ä»»åŠ¡å‘½ä»¤
 //         if($_server->exist($frame->fd)){
 //             $_server->task(['go' => 'die']);
 //         }
 //     }
-//     else {//Ñ­»·¹ã²¥
+//     else {//å¾ªçŽ¯å¹¿æ’­
 // //         $data = $frame->data;
 // //         foreach($_server->connections as $fd){
-// // //             $_server->push($fd , $data);//Ñ­»·¹ã²¥
+// // //             $_server->push($fd , $data);//å¾ªçŽ¯å¹¿æ’­
 // //             echo $fd;
 // //         }
 //     }
 });
 
 /**
- * µ±¿Í»§¶Ë¹Ø±ÕÓë·þÎñ¶ËµÄÁ¬½ÓÊ±»á´¥·¢¸ÃÊÂ¼þ
- * ¿Í»§¶Ë ¹Ø±Õä¯ÀÀÆ÷/µ±Ç°´°¿Ú ¾ù»á´¥·¢¸ÃÊÂ¼þ
- * ¹Ø±Õºó $fd »á´Ó $_server->connections ÖÐÒÆ³ý
+ * å½“å®¢æˆ·ç«¯å…³é—­ä¸ŽæœåŠ¡ç«¯çš„è¿žæŽ¥æ—¶ä¼šè§¦å‘è¯¥äº‹ä»¶
+ * å®¢æˆ·ç«¯ å…³é—­æµè§ˆå™¨/å½“å‰çª—å£ å‡ä¼šè§¦å‘è¯¥äº‹ä»¶
+ * å…³é—­åŽ $fd ä¼šä»Ž $_server->connections ä¸­ç§»é™¤
  * 
  */
 $server->on('close', function (swoole_websocket_server $_server, $fd) {
