@@ -45,7 +45,7 @@ $server->on('open', function (swoole_websocket_server $_server, swoole_http_requ
     //连接redis 绑定uid 和fd
     try{
         $redis = new \Redis();
-        $redis->connect('118.190.22.125',6380);
+        $redis->connect('127.0.0.1',6380);
         $auth = $redis->auth('123456');
         $redis->select(1);
         $name = $redis->get('name');
